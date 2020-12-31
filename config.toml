@@ -1,4 +1,19 @@
 baseURL = "http://blog.hugoexample.com/"
-languageCode = "en-us"
-title = "Hugo Example Blog"
 canonifyURLs = true
+
+defaultContentLanguage = "en"
+
+[languages]
+[languages.en]
+languageCode = "en-us"
+weight = 0
+title  = "Home"
+
+[languages.ru]
+languageCode = "ru-ru"
+weight = 1
+title = "Главная"
+
+[taxonomies]
+category = "categories"
+tag = "tags"
