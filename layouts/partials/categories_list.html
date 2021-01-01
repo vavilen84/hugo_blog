@@ -1,17 +1,11 @@
-<ul>
-    {{ range $taxonomyname, $taxonomy := .Site.Taxonomies }}
+{{ range $taxonomyname, $taxonomy := .Site.Taxonomies }}
     {{if eq $taxonomyname "categories" }}
-    <li><strong>CATEGORIES:</strong>
+        <strong>CATEGORIES:</strong>
         <br>
         <br>
-        <ul>
-            {{ range $key, $value := $taxonomy }}
-            <li>
-                <a class="underline localized" href="{{ $.Site.BaseURL }}tags/{{ $key }}">{{ $key }}</a>
-            </li>
-            {{ end }}
-        </ul>
-    </li>
+        {{ range $key, $value := $taxonomy }}
+            <a class="underline localized" href="{{ $.Site.BaseURL }}tags/{{ $key }}">{{ $key }}</a>
+        {{ end }}
     {{ end }}
-    {{ end }}
-</ul>
+{{ end }}
+
