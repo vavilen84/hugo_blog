@@ -7,8 +7,6 @@ function getLocalizedURL(url){
 $(document).ready(function(){
     $('.localized').each(function(){
         var url = new URL($(this).attr('href'));
-        console.log(url);
-        console.log(getLocalizedURL(url));
         $(this).attr('href', getLocalizedURL(url));
     });
 });

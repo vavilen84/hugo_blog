@@ -1,9 +1,16 @@
 $(document).ready(function(){
+
     var topBtn = document.getElementById("topBtn");
     var downBtn = document.getElementById("downBtn");
+
+    if ($('.wrapper').outerHeight() > window.outerHeight) {
+        $(downBtn).show();
+    }
+
     window.onscroll = function () {
         scrollFunction();
     };
+
     function scrollFunction() {
         if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
             topBtn.style.display = "block";
