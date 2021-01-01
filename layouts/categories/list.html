@@ -4,7 +4,13 @@
         <strong>Items in category <code>{{ .Title | lower }}</code></strong>
         <ul class="list-unstyled">
             {{ range .Data.Pages }}
-            {{ .Render "li" }}
+            <li>
+                <h5>
+                    <a href="{{ .Permalink }}">{{ .Title}}</a>
+                    <br>
+                    <small>posted on {{ .Date.Format "January 2, 2006" }}</small>
+                </h5>
+            </li>
             {{ end}}
         </ul>
     </div>
