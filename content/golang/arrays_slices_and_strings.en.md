@@ -3,7 +3,6 @@ title: "Arrays, slices (and strings): The mechanics of 'append'"
 categories:
   - "golang"
 tags:
-  - "golang"
   - "slices"
   - "translations"
 ---

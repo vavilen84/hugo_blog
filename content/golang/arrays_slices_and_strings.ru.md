@@ -3,7 +3,6 @@ title: "Массивы, срезы (и строки): Механизм append"
 categories:
   - "golang"
 tags:
-  - "golang"
   - "slices"
   - "translations"
 ---
