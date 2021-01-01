@@ -1,5 +1,6 @@
 ---
 title: "Интеграция: Sphinxsearch / Symfony / Docker / Postgres / KnpPaginatorBundle"
+date: "2019-05-15"
 categories:
   - "php"
 tags:
@@ -8,6 +9,7 @@ tags:
   - "docker"
   - "postgres"
   - "paginator"
+  - "integration"
 ---
 
 Репозиторий c проектом https://github.com/vavilen84/symfony_4_sphinx_search

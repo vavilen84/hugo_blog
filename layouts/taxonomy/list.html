@@ -3,12 +3,14 @@
     <div class="col-md-9">
         <div class="well well-sm">
             <h1>{{ .Title | upper }}</h1>
-            <ul class="list-unstyled">
+            <ul class="taxonomy-list">
                 {{ range .Data.Pages }}
                 <li>
                     <h5>
-                        <a class="underline" href="{{ .Permalink }}">{{ .Title }}</a>
+                        <a class="underline" href="{{ .Permalink }}">{{ .Title }}</a><br>
+                        <small>posted on {{ .Date.Format "January 2, 2006" }}</small></h5>
                     </h5>
+                    <hr>
                 </li>
                 {{ end}}
             </ul>

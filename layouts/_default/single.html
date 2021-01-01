@@ -3,6 +3,7 @@
 <div class="relative">
     <h1>{{.Title}}</h1>
     <div class="post">
+        <div>posted on {{ .Date.Format "January 2, 2006" }}</div>
         {{.Content}}
     </div>
     <div class="right-sidebar">
