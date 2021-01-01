@@ -1,0 +1,17 @@
+<ul>
+    {{ range $taxonomyname, $taxonomy := .Site.Taxonomies }}
+    {{if eq $taxonomyname "tags" }}
+    <li>Tags:
+        <br>
+        <br>
+        <ul>
+            {{ range $key, $value := $taxonomy }}
+            <li>
+                <a class="underline localized" href="{{ $.Site.BaseURL }}tags/{{ $key }}">{{ $key }}</a>
+            </li>
+            {{ end }}
+        </ul>
+    </li>
+    {{ end }}
+    {{ end }}
+</ul>

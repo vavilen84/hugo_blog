@@ -1,12 +1,12 @@
 {{ partial "head.html" . }}
 <div class="col-md-9">
     <div class="well well-sm">
-        <h1>{{ .Title }}</h1>
+        <h1>{{ .Title | upper }}</h1>
         <ul class="list-unstyled">
             {{ range .Data.Pages }}
             <li>
                 <h5>
-                    <a href="{{ .Permalink }}">{{ .Title}}</a>
+                    <a class="underline" href="{{ .Permalink }}">{{ .Title}}</a>
                 </h5>
             </li>
             {{ end}}
@@ -14,8 +14,8 @@
     </div>
 </div>
 
-<!-- Sidebar -->
-<div class="col-md-3">
-
+<div class="right-sidebar">
+    {{ partial "tags_list.html" . }}
 </div>
+
 {{ partial "bottom.html" . }}

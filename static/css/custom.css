@@ -126,3 +126,21 @@ body {
     height: 2px;
     background: black;
 }
+.right-sidebar{
+    position: fixed;
+    top:156px;
+    right:30px;
+    border:2px solid #cecece;
+    border-radius: 5px;
+    padding:10px;
+}
+.underline {
+    display: block;
+    padding: 2px 0;
+    color: #222;
+    text-decoration: underline;
+}
+
+.underline:hover{
+    color: #222;
+}
