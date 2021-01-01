@@ -1,14 +1,12 @@
 {{ partial "head.html" . }}
 <div class="col-md-9">
     <div class="well well-sm">
-        <strong>Items in category <code>{{ .Title | lower }}</code></strong>
+        <h1>{{ .Title }}</h1>
         <ul class="list-unstyled">
             {{ range .Data.Pages }}
             <li>
                 <h5>
                     <a href="{{ .Permalink }}">{{ .Title}}</a>
-                    <br>
-                    <small>posted on {{ .Date.Format "January 2, 2006" }}</small>
                 </h5>
             </li>
             {{ end}}

@@ -8,8 +8,9 @@
     <!-- This should be modified to be your name, if you want to include this information -->
     <title>{{ .Title }} - {{ .Site.BaseURL }}</title>
     <link rel="canonical" href="{{ .Permalink }}">
-    <link href="/css/font-awesome.css" rel="stylesheet">
+
     <link href="/css/custom.css" rel="stylesheet">
+    <link href="/css/font-awesome.css" rel="stylesheet">
     <link
             rel="stylesheet"
             href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
@@ -21,9 +22,20 @@
             crossorigin="anonymous"></script>
     <script src="/js/lang-switcher.js"></script>
     <script src="/js/link-localize.js"></script>
+    <link rel="stylesheet"
+          href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/default.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script src="/js/top-down-btn.js"></script>
 </head>
 <body>
 <div class="wrapper">
+    <a class="btn btn-info" onclick="topFunction()" id="topBtn">
+        <div class="arrow-up"></div>
+    </a>
+    <a class="btn btn-info" onclick="downFunction()" id="downBtn">
+        <div class="arrow-down"></div>
+    </a>
     <div class="content">
         <div class="holder nav-block">
             <ul class="nav fl-left">

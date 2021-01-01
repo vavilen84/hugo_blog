@@ -1,5 +1,5 @@
 ---
-title: "Arrays, slices (and strings): The mechanics of 'append'"
+title: "Массивы, срезы (и строки): Механизм append"
 categories:
   - "golang"
 tags:
@@ -9,8 +9,6 @@ tags:
 ---
 
 Перевод статьи https://blog.golang.org/slices
-
-# Массивы, срезы (и строки): Механизм append
 
 ## Вступление
 
