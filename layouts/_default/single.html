@@ -1,7 +1,14 @@
 {{ partial "head.html" . }}
-<h1>{{.Title}}</h1>
-{{.Content}}
-<div class="right-sidebar">
-    {{ partial "tags_list.html" . }}
+<div class="relative">
+    <h1>{{.Title}}</h1>
+    <div class="post">
+        {{.Content}}
+    </div>
+    <div class="right-sidebar">
+        {{ partial "tags_list.html" . }}
+    </div>
+    <div class="left-sidebar">
+        {{ partial "headers_list.html" . }}
+    </div>
 </div>
 {{ partial "bottom.html" . }}

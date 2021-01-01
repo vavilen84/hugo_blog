@@ -128,16 +128,36 @@ body {
     background: black;
 }
 .right-sidebar{
-    position: fixed;
+    position: absolute;
     top:156px;
-    right:30px;
+    right:-245px;
+    border:2px solid #cecece;
+    border-radius: 5px;
+    padding:10px;
+    width:215px;
+}
+.relative{
+    position: relative;
+}
+.left-sidebar{
+    width:215px;
+    position: absolute;
+    top:156px;
+    left:-245px;
     border:2px solid #cecece;
     border-radius: 5px;
     padding:10px;
 }
+
+@media (max-width: 1510px) {
+    .right-sidebar,.left-sidebar{
+        display: none;
+    }
+}
+
 .underline {
     display: block;
-    padding: 2px 0;
+    padding: 5px 0;
     color: #222;
     text-decoration: underline;
 }
