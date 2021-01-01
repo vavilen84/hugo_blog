@@ -1,0 +1,25 @@
+{{ partial "head.html" . }}
+<div class="relative">
+    <div class="col-md-9">
+        <div class="well well-sm">
+            <h1>{{ .Title | upper }}</h1>
+            <ul class="list-unstyled">
+                {{ range .Data.Pages }}
+                <li>
+                    <h5>
+                        <a class="underline" href="{{ .Permalink }}">{{ .Title }}</a>
+                    </h5>
+                </li>
+                {{ end}}
+            </ul>
+        </div>
+    </div>
+
+    <div class="right-sidebar">
+        {{ partial "tags_list.html" . }}
+        <hr>
+        {{ partial "categories_list.html" . }}
+    </div>
+
+</div>
+{{ partial "bottom.html" . }}
