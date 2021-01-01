@@ -23,22 +23,26 @@ $(document).ready(function () {
         }
 
         var sideWidth = (window.innerWidth - 1000) / 2;
+
+        var leftSidebar = $('.left-sidebar');
+        var rightSidebar = $('.right-sidebar');
+
         if ((sideWidth > 215) && (scrollTop > 170)) {
-            $('.left-sidebar').css('position', 'fixed');
-            $('.left-sidebar').css('top', 30);
-            $('.left-sidebar').css('left', (sideWidth - 215) / 2);
+            leftSidebar.css('position', 'fixed');
+            leftSidebar.css('top', 30);
+            leftSidebar.css('left', (sideWidth - 215) / 2);
 
-            $('.right-sidebar').css('position', 'fixed');
-            $('.right-sidebar').css('top', 30);
-            $('.right-sidebar').css('right', (sideWidth - 215) / 2);
+            rightSidebar.css('position', 'fixed');
+            rightSidebar.css('top', 30);
+            rightSidebar.css('right', (sideWidth - 215) / 2);
         } else {
-            $('.left-sidebar').css('position', 'absolute');
-            $('.left-sidebar').css('top', 156);
-            $('.left-sidebar').css('left', -245);
+            leftSidebar.css('position', 'absolute');
+            leftSidebar.css('top', 156);
+            leftSidebar.css('left', -245);
 
-            $('.right-sidebar').css('position', 'absolute');
-            $('.right-sidebar').css('top', 156);
-            $('.right-sidebar').css('right', -245);
+            rightSidebar.css('position', 'absolute');
+            rightSidebar.css('top', 156);
+            rightSidebar.css('right', -245);
         }
     }
 });
