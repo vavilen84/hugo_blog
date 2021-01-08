@@ -1,0 +1,108 @@
+---
+title: "Integration: Symfony + KnpMenuBundle"
+date: "2019-05-15"
+categories:
+    - "php"
+tags:
+    - "knplabs"
+    - "integration"
+    - "symfony"
+---
+
+https://symfony.com/doc/master/bundles/KnpMenuBundle/index.html
+
+скачиваем зависимости
+```
+$ composer require knplabs/knp-menu-bundle "^2.0"
+```
+
+добавляем бандл в bundles.php
+```php
+Knp\Bundle\MenuBundle\KnpMenuBundle::class => ['all' => true],
+```
+
+создаем файл app/config/packages/knp_menu.yaml и добавляем туда
+```yaml
+knp_menu:
+    # use "twig: false" to disable the Twig extension and the TwigRenderer
+    twig:
+        #template: knp_menu_custom.html.twig
+        template: knp_menu.html.twig
+    #  if true, enables the helper for PHP templates
+    templating: false
+    # the renderer to use, list is also available by default
+    default_renderer: twig
+```
+
+добавляем в app/config/services.yaml
+```yaml
+services:
+    # ... other services defenitions ...
+    app.menu_builder:
+        autowire: false
+        class: App\Service\KnpMenuBuilderService
+        arguments: ["@knp_menu.factory", "@security.authorization_checker"]
+        tags:
+            - { name: knp_menu.menu_builder, method: createMainMenu, alias: main }
+```
+
+создаем файл App\Services\KnpMenuBuilderService.php
+```php
+<?php
+
+namespace App\Service;
+
+use Knp\Menu\FactoryInterface;
+use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
+
+class KnpMenuBuilderService
+{
+    /** @var FactoryInterface */
+    private $factory;
+
+    /** @var  AuthorizationCheckerInterface */
+    private $authChecker;
+
+    public function __construct(FactoryInterface $factory, AuthorizationCheckerInterface $authorizationCheckerInterface)
+    {
+        $this->factory = $factory;
+        $this->authChecker = $authorizationCheckerInterface;
+    }
+
+    public function createMainMenu(array $options)
+    {
+        $menu = $this->factory->createItem('root');
+        $menu = $this->addItems($menu);
+        $menu = $this->setAttributes($menu);
+
+        return $menu;
+    }
+
+    private function addItems($menu)
+    {
+        $menu->addChild('Home', ['route' => 'index']);
+        if ($this->authChecker->isGranted('ROLE_ADMIN') !== false) {
+            $menu->addChild('Admin', ['route' => 'easyadmin']);
+        }
+
+        return $menu;
+    }
+
+    private function setAttributes($menu)
+    {
+        foreach ($menu as $item) {
+            $item->setLinkAttribute('class', 'nav-link'); // a class
+        }
+        $menu->setChildrenAttribute('class', 'nav nav-pills'); // ul class
+
+        return $menu;
+    }
+}
+```
+
+во view добвляем
+```
+{{ knp_menu_render('main') }}
+```
+
+Готово!

@@ -28,7 +28,7 @@ tags:
 composer update
 ```
 
-### 3. добавляем бандл
+### 3. добавляем бандл в bundles.php
 ```php
 <?php
 
