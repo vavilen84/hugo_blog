@@ -189,3 +189,15 @@ body {
 .posted-on{
     margin: 20px 0;
 }
+
+.home-page ul {
+    margin-left: 20px;
+}
+
+.home-page li {
+    list-style: square;
+}
+
+.ml20px{
+    margin-left:20px;
+}

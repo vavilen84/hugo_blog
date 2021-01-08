@@ -1,3 +1,12 @@
 {{ partial "head.html" . }}
-{{.Content}}
+<div class="home-page">
+    <h1>WEB developer blog</h1>
+    <div class="fl-left">
+        <img src="/images/me.jpeg" alt="">
+    </div>
+    <div class="fl-left ml20px">
+        {{.Content}}
+    </div>
+    <div class="clear"></div>
+</div>
 {{ partial "bottom.html" . }}
