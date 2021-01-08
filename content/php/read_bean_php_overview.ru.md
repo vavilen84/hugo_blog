@@ -6,6 +6,7 @@ categories:
 tags:
   - "orm"
   - "overview"
+  - "redbeanphp"
 ---
 
 Быстрый старт https://redbeanphp.com/index.php?p=/quick_tour
