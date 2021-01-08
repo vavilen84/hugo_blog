@@ -2,12 +2,12 @@
 title: "Интеграция: Symfony + PropelBundle"
 date: "2019-05-15"
 categories:
-- "php"
-  tags:
-- "orm"
-- "integration"
-- "propel"
-- "symfony"
+  - "php"
+tags:
+  - "orm"
+  - "integration"
+  - "propel"
+  - "symfony"
 ---
 
 https://github.com/propelorm/PropelBundle (бандл не поддерживается сообществом)
