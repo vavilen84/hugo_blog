@@ -17,3 +17,11 @@ title = "Главная"
 [taxonomies]
 category = "categories"
 tag = "tags"
+
+[sitemap]
+changefreq = "monthly"
+filename = "sitemap.xml"
+priority = 0.5
+
+[outputs]
+home = ["HTML", "JSON"]
