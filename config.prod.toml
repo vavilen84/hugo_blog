@@ -1,4 +1,4 @@
-baseURL = "http://blog.hugoexample.com/"
+baseURL = "http://vavilen84.com/"
 canonifyURLs = true
 
 defaultContentLanguage = "en"
@@ -27,4 +27,4 @@ priority = 0.5
 home = ["HTML", "JSON"]
 
 [Params]
-env = "local"
+env = "prod"
