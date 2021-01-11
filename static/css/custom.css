@@ -139,6 +139,7 @@ body {
 }
 
 .right-sidebar {
+    display: none;
     position: absolute;
     top: 156px;
     border: 2px solid #cecece;
@@ -201,3 +202,43 @@ body {
 .ml20px{
     margin-left:20px;
 }
+
+.autocomplete-suggestions{
+    position: absolute;
+    background: white;
+    padding: 20px;
+    border: 1px solid black;
+}
+
+
+.home-wrap{
+    margin-top: 50px;
+}
+
+.home-page-tags li,
+.home-page-categories li {
+    list-style: none;
+    margin:5px;
+    display: inline-block;
+}
+
+.home-page-categories li a {
+    color:white;
+}
+
+.home-page-img-wrap {
+    width: 200px;
+}
+
+.home-page-description-wrap{
+    width:600px;
+    font-size: 20px;
+    line-height: 30px;
+}
+
+.home-page-content-wrap{
+    margin-top: 20px;
+    font-size: 20px;
+    line-height: 30px;
+}
+

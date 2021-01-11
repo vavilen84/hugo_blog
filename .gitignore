@@ -11,3 +11,6 @@ $RECYCLE.BIN/
 # OSX
 .DS_Store
 .idea
+
+updateIdx/.env
+updateIdx/.node_modules

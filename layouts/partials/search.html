@@ -1,15 +1,19 @@
-<div class="searchbox">
-    <input data-search-input id="search-by" type="search" placeholder="Search">
-    <div class="autocomplete-suggestions"></div>
-</div>
 {{ $assetBusting := not .Site.Params.disableAssetsBusting }}
-<script type="text/javascript" src="{{"js/lunr.min.js" | relURL}}{{ if $assetBusting }}?{{ now.Unix }}{{ end }}"></script>
-<script type="text/javascript" src="{{"js/auto-complete.js" | relURL}}{{ if $assetBusting }}?{{ now.Unix }}{{ end }}"></script>
-<script type="text/javascript">
-    {{ if .Site.IsMultiLingual }}
-    var baseurl = "{{.Site.BaseURL}}{{.Site.LanguagePrefix}}";
-    {{ else }}
-    var baseurl = "{{.Site.BaseURL}}";
-    {{ end }}
-</script>
-<script type="text/javascript" src="{{"js/search.js" | relURL}}{{ if $assetBusting }}?{{ now.Unix }}{{ end }}"></script>
+<div class="searchbox">
+    <div class="fl-left algolia-logo-wrap">
+        <img class="algolia-logo" src="/images/algolia.png" alt=""/>
+    </div>
+    <div id="searchbox" class="ais-SearchBox fl-left"></div>
+    <div class="clear"></div>
+    <div class="search-result-wrap">
+        <div id="hits"></div>
+        <div id="pagination"></div>
+    </div>
+</div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.css@7/themes/algolia-min.css">
+<link href="/css/algolia.css" rel="stylesheet">
+
+<script src="https://cdn.jsdelivr.net/algoliasearch/3.32.0/algoliasearchLite.min.js{{ if $assetBusting }}?{{ now.Unix }}{{ end }}"></script>
+<script src="https://cdn.jsdelivr.net/npm/instantsearch.js@4.8.4{{ if $assetBusting }}?{{ now.Unix }}{{ end }}"></script>
+<script src="/js/algolia.js{{ if $assetBusting }}?{{ now.Unix }}{{ end }}"></script>

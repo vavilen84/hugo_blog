@@ -1,0 +1,12 @@
+<ul class="home-page-tags">
+    {{ range $taxonomyname, $taxonomy := .Site.Taxonomies }}
+    {{if eq $taxonomyname "tags" }}
+    {{ range $key, $value := $taxonomy }}
+    <li>
+        <a class="underline localized btn btn-info" href="{{ $.Site.BaseURL }}tags/{{ $key }}">{{ $key }}</a>
+    </li>
+    {{ end }}
+    {{ end }}
+    {{ end }}
+</ul>
+

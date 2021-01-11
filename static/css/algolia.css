@@ -1,0 +1,145 @@
+.header {
+    display: flex;
+    align-items: center;
+    min-height: 50px;
+    padding: 0.5rem 1rem;
+    background-image: linear-gradient(284deg, #fedd4e, #fcb43a);
+    color: #fff;
+    margin-bottom: 1rem;
+}
+
+.header a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.header-title {
+    font-size: 1.2rem;
+    font-weight: normal;
+}
+
+.header-title::after {
+    content: ' ▸ ';
+    padding: 0 0.5rem;
+}
+
+.header-subtitle {
+    font-size: 1.2rem;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1rem;
+}
+
+.search-panel {
+    display: flex;
+}
+
+.search-panel__filters {
+    flex: 1;
+}
+
+.search-panel__results {
+    flex: 3;
+}
+
+.ais-Highlight-highlighted {
+    color: inherit;
+    font-size: inherit;
+}
+
+#searchbox {
+    margin-bottom: 2rem;
+}
+
+#pagination {
+    margin: 2rem auto;
+    text-align: center;
+}
+
+#hits > div,
+.search-result-wrap {
+    display: none;
+}
+
+#hits li {
+    text-align: left;
+    width: 100%;
+    margin: 0;
+    background: white;
+    padding: 10px;
+}
+#hits li a,
+#hits li a:hover,
+#hits li a:hover span{
+    color: #222 !important;
+}
+#hits li .title {
+    text-decoration: underline;
+}
+
+.ais-SearchBox-submit{
+    display: none;
+}
+
+.search-result-wrap{
+    background: white;
+    border: 1px solid gray;
+}
+
+.ais-Hits-list, .ais-InfiniteHits-list, .ais-InfiniteResults-list, .ais-Results-list{
+    margin-left: 0;
+}
+
+.ais-Pagination-item--selected .ais-Pagination-link{
+    background-color: #00bdf3;
+    border-color: #00bdf3;
+}
+
+.ais-SearchBox-reset{
+    display: none;
+}
+#hits em {
+    background: yellow;
+}
+@media screen and (max-width: 500px) {
+    .tags-wrap,
+    .description-wrap,
+    .content-wrap {
+        display: none;
+    }
+}
+
+.ais-SearchBox-input{
+    margin-left: 10px;
+    height: 38px;
+    width: 300px;
+}
+
+.algolia-logo{
+    max-height: 30px;
+    position: relative;
+    top:5px;
+}
+
+.algolia-logo-wrap{
+    margin-left:25px;
+}
+
+.search-result-wrap{
+    position: absolute;
+    background: white;
+    z-index: 10;
+    width:510px;
+    top:57px;
+}
+
+.ais-Hits-item{
+    border:none;
+}
+
+.ais-Hits-list{
+    margin-top:0;
+}

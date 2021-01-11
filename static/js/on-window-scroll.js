@@ -21,6 +21,8 @@ $(document).ready(function () {
     function centerSidebarsAbsolute(sideWidth, leftSidebar, rightSidebar) {
         leftSidebar.css('left', -(((sideWidth - 300) / 2) + 300)); // middle of the left side
         rightSidebar.css('right', -(((sideWidth - 215) / 2) + 215));
+        leftSidebar.show();
+        rightSidebar.show();
     }
 
     function centerSidebarsFixed(sideWidth, leftSidebar, rightSidebar) {

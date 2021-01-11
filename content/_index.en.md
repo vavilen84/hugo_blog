@@ -1,11 +1,13 @@
-Hey, hope you are well! My name is Vladimir, I am a Software Engineer and this is my blog. Here you can find:
-- reviews
-- integrations
-- articles translations
-- notes from books
+---
+description: "
+Hey, hope you are well! My name is Vladimir, I am a software engineer and this is my blog. Here you can find: reviews, articles about different integrations, articles translations, notes from books. I would be glad if you manage to find here anything interesting and helpful for yourself. Nice reading!
+"
+---
 
-for a stack:
-- PHP
-- Golang
+by tags:
+{{<home_page_tags >}}
 
-I would be glad if you manage to find here anything interesting for yourself. Nice reading!
+by categories:
+{{<home_page_categories >}}
+
+
