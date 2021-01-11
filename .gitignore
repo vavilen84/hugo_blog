@@ -13,4 +13,4 @@ $RECYCLE.BIN/
 .idea
 
 updateIdx/.env
-updateIdx/.node_modules
+/updateIdx/node_modules/*
