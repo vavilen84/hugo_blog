@@ -26,6 +26,13 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
     <script>hljs.initHighlightingOnLoad();</script>
     <script src="/js/on-window-scroll.js"></script>
+
+    <meta property="og:url"                content="{{ .Permalink }}" />
+    <meta property="og:type"               content="article" />
+    <meta property="og:title"              content="{{ .Title }}" />
+    <meta property="og:description"        content="{{ .Description }}" />
+    <meta property="og:image"              content="{{ .Site.BaseURL }}images/og-image.png" />
+
     {{ if eq (.Param "env") "prod" }}
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-VW896HZ9DT"></script>
     <script>
