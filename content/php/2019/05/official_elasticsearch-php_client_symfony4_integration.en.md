@@ -1,5 +1,5 @@
 ---
-title: "Integration: Symfony + Elasticsearch (official php-client)"
+title: "Symfony + Elasticsearch (official php-client)"
 publishdate: "2019-05-15"
 categories:
     - "php"

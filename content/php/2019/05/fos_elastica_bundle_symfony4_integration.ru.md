@@ -1,5 +1,5 @@
 ---
-title: "Integration: Symfony + FOSElasticaBundle + Docker"
+title: "Symfony + FOSElasticaBundle + Docker"
 publishdate: "2019-05-15"
 categories:
     - "php"

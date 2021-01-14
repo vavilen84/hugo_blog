@@ -1,5 +1,5 @@
 ---
-title: "Обзор: RedBeanPHP ORM"
+title: "RedBeanPHP ORM"
 publishdate: "2019-05-15"
 categories:
   - "php"

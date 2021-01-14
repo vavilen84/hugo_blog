@@ -1,5 +1,5 @@
 ---
-title: "Integration: Symfony + KnpMenuBundle"
+title: "Symfony + KnpMenuBundle"
 publishdate: "2019-05-15"
 categories:
     - "php"

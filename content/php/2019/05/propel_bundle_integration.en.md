@@ -1,5 +1,5 @@
 ---
-title: "Integration: Symfony + PropelBundle"
+title: "Symfony + PropelBundle"
 publishdate: "2019-05-15"
 categories:
     - "php"

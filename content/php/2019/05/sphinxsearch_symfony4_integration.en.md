@@ -1,5 +1,5 @@
 ---
-title: "Integration: Sphinxsearch / Symfony / Docker / Postgres / KnpPaginatorBundle"
+title: "Sphinxsearch / Symfony / Docker / Postgres / KnpPaginatorBundle"
 publishdate: "2019-05-15"
 categories:
   - "php"
