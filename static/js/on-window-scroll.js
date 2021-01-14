@@ -10,10 +10,6 @@ $(document).ready(function () {
     var topBtn = document.getElementById("topBtn");
     var downBtn = document.getElementById("downBtn");
 
-    if ($('.wrapper').outerHeight() > window.outerHeight) {
-        $(downBtn).show();
-    }
-
     window.onscroll = function () {
         scrollFunction();
     };
@@ -33,10 +29,10 @@ $(document).ready(function () {
 
         if (scrollTop > 20) {
             topBtn.style.display = "block";
-            downBtn.style.display = "none";
+            downBtn.style.display = "block";
         } else {
             topBtn.style.display = "none";
-            downBtn.style.display = "block";
+            downBtn.style.display = "none";
         }
 
         sideWidth = (window.innerWidth - 1000) / 2;
