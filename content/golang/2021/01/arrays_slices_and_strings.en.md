@@ -1,6 +1,7 @@
 ---
 title: "Arrays, slices (and strings): The mechanics of 'append'"
-date: "2021-01-01"
+publishdate: "2021-01-01"
+lastmod: "2021-01-02"
 categories:
   - "golang"
 tags:

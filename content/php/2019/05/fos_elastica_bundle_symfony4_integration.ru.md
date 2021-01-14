@@ -1,6 +1,6 @@
 ---
 title: "Integration: Symfony + FOSElasticaBundle + Docker"
-date: "2019-05-15"
+publishdate: "2019-05-15"
 categories:
     - "php"
 tags:

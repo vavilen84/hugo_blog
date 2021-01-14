@@ -189,6 +189,12 @@ body {
 
 .posted-on{
     margin: 20px 0;
+    color: gray;
+    text-decoration: underline;
+}
+
+.taxonomy-list .posted-on{
+    font-size: 15px;
 }
 
 .home-page ul {

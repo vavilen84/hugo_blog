@@ -1,6 +1,6 @@
 ---
 title: "Интеграция: Symfony + PropelBundle"
-date: "2019-05-15"
+publishdate: "2019-05-15"
 categories:
   - "php"
 tags:

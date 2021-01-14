@@ -6,10 +6,9 @@
             <ul class="taxonomy-list">
                 {{ range .Data.Pages }}
                 <li>
-                    <h5>
-                        <a class="underline" href="{{ .Permalink }}">{{ .Title }}</a><br>
-                        <small>posted on {{ .Date.Format "January 2, 2006" }}</small></h5>
-                    </h5>
+                    <a class="underline" href="{{ .Permalink }}"><h5>{{ .Title }}</h5></a>
+                    <small class="posted-on">Posted on {{ .PublishDate.Format "January 2, 2006" }}</small><br>
+                    <small class="posted-on">Updated on {{ .Lastmod.Format "January 2, 2006" }}</small>
                     <hr>
                 </li>
                 {{ end}}
