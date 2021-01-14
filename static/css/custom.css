@@ -212,7 +212,7 @@ body {
 
 
 .home-wrap{
-    margin-top: 50px;
+
 }
 
 .home-page-tags li,
@@ -237,8 +237,13 @@ body {
 }
 
 .home-page-content-wrap{
-    margin-top: 20px;
+    margin-top: 70px;
     font-size: 20px;
     line-height: 30px;
 }
 
+#recent-articles-list li a {
+    color: #222;
+    text-decoration: underline;
+    font-size:20px;
+}
