@@ -5,6 +5,7 @@ $(document).ready(function(){
             var title = $(this).text();
             var id = $(this).attr('id');
             $('#headers-list').append('<li><a class="underline" href="#'+id+'">'+title+'</a></li>')
-        });
+        })
+        $('.left-sidebar').show();
     }
 });
