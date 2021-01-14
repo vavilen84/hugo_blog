@@ -10,7 +10,7 @@ summary: "Меня зовут Владимир, я - software engineer и это
 ### По категориям:
 {{<home_page_categories >}}
 
-### Недавние Статьи
+### Последние статьи
 {{<home_page_recent_articles >}}
 
 

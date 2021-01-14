@@ -35,7 +35,7 @@ body {
 }
 
 .content {
-    padding-bottom: 90px;
+    padding-bottom: 200px;
 }
 
 .holder {
@@ -203,6 +203,7 @@ body {
 
 .home-page li {
     list-style: square;
+    margin: 10px 0;
 }
 
 .ml20px {
@@ -256,4 +257,15 @@ body {
 
 #hits {
     margin-top: 20px;
+}
+
+#recent-articles-list,
+.home-page-categories,
+.home-page-tags{
+    margin-top:48px;
+}
+
+.home-page-categories,
+.home-page-tags{
+    margin-bottom: 48px;
 }

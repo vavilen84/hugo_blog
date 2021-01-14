@@ -6,6 +6,7 @@
   "title": "{{ htmlEscape $page.Title}}",
   "tags": [{{ range $tindex, $tag := $page.Params.tags }}{{ if $tindex }}, {{ end }}"{{ $tag| htmlEscape }}"{{ end }}],
   "description": "{{ htmlEscape .Description}}",
+  "category": [{{ range $cindex, $category :=  $page.Params.categories }}"{{ $category| htmlEscape }}"{{ end }}],
   "content": {{$page.Plain | jsonify}}
 }
 {{- end -}}
