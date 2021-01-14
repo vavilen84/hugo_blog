@@ -14,6 +14,6 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.css@7/themes/algolia-min.css">
 <link href="/css/algolia.css" rel="stylesheet">
 
-<script src="https://cdn.jsdelivr.net/algoliasearch/3.32.0/algoliasearchLite.min.js{{ if $assetBusting }}?{{ now.Unix }}{{ end }}"></script>
-<script src="https://cdn.jsdelivr.net/npm/instantsearch.js@4.8.4{{ if $assetBusting }}?{{ now.Unix }}{{ end }}"></script>
-<script src="/js/algolia.js{{ if $assetBusting }}?{{ now.Unix }}{{ end }}"></script>
+<script src="https://cdn.jsdelivr.net/algoliasearch/3.32.0/algoliasearchLite.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/instantsearch.js@4.8.4"></script>
+<script src="/js/algolia.js{{ if $assetBusting }}?timestamp={{ now.Unix }}{{ end }}"></script>

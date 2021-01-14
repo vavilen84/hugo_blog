@@ -1,3 +1,4 @@
+{{ $assetBusting := not .Site.Params.disableAssetsBusting }}
 <!doctype html>
 <html lang="{{ .Site.Language.Lang }}">
 <head>
@@ -19,16 +20,16 @@
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"
             integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
             crossorigin="anonymous"></script>
-    <script src="/js/lang-switcher.js"></script>
-    <script src="/js/link-localize.js"></script>
+    <script src="/js/lang-switcher.js{{ if $assetBusting }}?timestamp={{ now.Unix }}{{ end }}"></script>
+    <script src="/js/link-localize.js{{ if $assetBusting }}?timestamp={{ now.Unix }}{{ end }}"></script>
     <link rel="stylesheet"
           href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/default.min.css">
     <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
     <script>hljs.initHighlightingOnLoad();</script>
 
-    <script src="/js/on-window-scroll.js"></script>
-    <script src="/js/left-sidebar.js"></script>
-    <script src="/js/right-sidebar.js"></script>
+    <script src="/js/on-window-scroll.js{{ if $assetBusting }}?timestamp={{ now.Unix }}{{ end }}"></script>
+    <script src="/js/left-sidebar.js{{ if $assetBusting }}?timestamp={{ now.Unix }}{{ end }}"></script>
+    <script src="/js/right-sidebar.js{{ if $assetBusting }}?timestamp={{ now.Unix }}{{ end }}"></script>
 
     <meta property="og:url"                content="{{ .Permalink }}" />
     <meta property="og:type"               content="article" />
