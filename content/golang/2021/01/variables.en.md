@@ -135,12 +135,21 @@ Variables can not be declared twice in one block. Declaration
 var a = 123
 var a = 123
 ```
-or 
+will throw
+```
+./prog.go:9:5: a redeclared in this block
+	previous declaration at ./prog.go:8:5
+```
+
+Declaration
 ```
 a := 123 
 a := 123 
 ```
-will throw error with a message "a redeclared in this block"
+will throw 
+```
+./prog.go:9:3: no new variables on left side of :=
+```
 
 ## Multiple variables declaration
 
