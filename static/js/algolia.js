@@ -32,7 +32,7 @@ function initAlgoliaClient() {
     var url = new URL(window.location.href);
     var langPostfix = (url.pathname.indexOf('/ru') !== -1) ? 'ru' : 'en';
     const search = instantsearch({
-        indexName: 'blog_local_' + langPostfix,
+        indexName: indexName + langPostfix,
         searchClient,
     });
 
@@ -46,22 +46,12 @@ function initAlgoliaClient() {
         instantsearch.widgets.hits({
             container: '#hits',
             escapeHTML: false,
-            transformItems(items) {
-                return items.map(function (item) {
-                    // item._highlightResult.tags.value = prepareField(item._highlightResult.tags.value);
-                    // item._highlightResult.description.value = prepareField(item._highlightResult.description.value);
-                    // item._highlightResult.content.value = prepareField(item._highlightResult.content.value);
-                    return item;
-                });
-            },
             templates: {
                 item: `
 <div class="hit-item">
     <a target="_blank" href="{{ uri }}" data-object_id="{{ objectID }}">
             <div class="title"><strong>{{title}}</strong></div>
-<!--<div class="tags-wrap">{{#helpers.highlight}}{ "attribute": "tags" }{{/helpers.highlight}}</div>-->
 <div class="description-wrap">{{#helpers.highlight}}{ "attribute": "description" }{{/helpers.highlight}}</div>
-<!--<div class="content-wrap">{{#helpers.highlight}}{ "attribute": "content" }{{/helpers.highlight}}</div>-->
     </a>
 </div>
 `,
@@ -73,23 +63,4 @@ function initAlgoliaClient() {
     ]);
 
     search.start();
-}
-
-function prepareField(value) {
-    if (value.length) {
-        var result = /(.{0,20})<em>(.*?)<\/em>(.{0,20})/g.exec(value);
-        if (result && result[0]) {
-            if (result[0] > 200) {
-                if (result[0]) {
-                    result = result[0].replace(/^(.*)>((.*)<em(.*)<\/em>(.*))<\/(.*)$/g, "$2");
-                    return "..." + result + "...";
-                }
-            } else {
-                return result[0];
-            }
-        } else {
-            return "";
-        }
-    }
-    return "";
 }

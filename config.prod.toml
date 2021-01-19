@@ -27,4 +27,4 @@ priority = 0.5
 home = ["HTML", "JSON"]
 
 [Params]
-env = "prod"
+IndexName = "blog_production_"

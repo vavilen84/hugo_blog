@@ -1,6 +1,6 @@
 const algoliasearch = require("algoliasearch");
 const fetch = require("node-fetch");
-require('dotenv').config({path:process.cwd()+'/updateIdx/.env'});
+require('dotenv').config({path:process.cwd()+'/updateIdx/' + process.env.ENV_FILE});
 
 function indexData(data) {
     data = prepareData(data);
@@ -16,7 +16,7 @@ function indexData(data) {
 function prepareData(data) {
     let result = [];
     for (let i in data) {
-        if (data[i].content === "" || data[i].title === "") {
+        if (data[i].content === "" || data[i].title === "" || data[i].tags.length < 1) {
             continue;
         }
         data[i].tags = data[i].tags.join();
