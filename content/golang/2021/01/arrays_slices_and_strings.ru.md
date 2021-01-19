@@ -1,5 +1,5 @@
 ---
-title: "Массивы, срезы (и строки): Механизм append"
+title: "Массивы, срезы и строки. Механизм append"
 publishdate: "2021-01-01"
 categories:
   - "golang"

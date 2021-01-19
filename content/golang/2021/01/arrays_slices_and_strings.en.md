@@ -1,5 +1,5 @@
 ---
-title: "Arrays, slices (and strings): The mechanics of 'append'"
+title: "Arrays, slices and strings. The mechanics of append"
 publishdate: "2021-01-01"
 lastmod: "2021-01-02"
 categories:

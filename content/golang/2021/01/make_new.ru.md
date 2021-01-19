@@ -1,5 +1,5 @@
 ---
-title: "make & new builtin functions"
+title: "Встроенные функции make и new"
 publishdate: "2021-01-14"
 lastmod: "2021-01-19"
 categories:
