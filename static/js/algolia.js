@@ -5,8 +5,6 @@ $(document).ready(function () {
     onSearchInputKeyup();
 
     $('.search-result-wrap').css('left', $('.ais-SearchBox-input').offset().left);
-
-    console.log();
 });
 
 function hideSearchResults() {

@@ -1,5 +1,3 @@
-var currentLang = "{{.Site.Language.Lang}}";
-
 function getLocalizedURL(url){
     var lang = currentLang === 'en' ? '' : '/ru';
     return url.origin +  lang + url.pathname;

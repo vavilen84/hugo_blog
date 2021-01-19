@@ -9,7 +9,7 @@
     <title>{{ .Title }}</title>
     <link rel="canonical" href="{{ .Permalink }}">
     <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon">
-    <link href="/css/custom.css" rel="stylesheet">
+    <link href="/css/custom.css?timestamp={{ now.Unix }}" rel="stylesheet">
     <link href="/css/font-awesome.css" rel="stylesheet">
     <link
             rel="stylesheet"
@@ -47,6 +47,10 @@
         gtag('config', 'G-VW896HZ9DT');
     </script>
     {{ end }}
+
+    <script>
+        var currentLang = "{{.Site.Language.Lang}}";
+    </script>
 </head>
 <body>
 <div class="wrapper">

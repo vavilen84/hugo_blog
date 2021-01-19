@@ -251,10 +251,15 @@ body {
 
 #recent-articles-list li a {
     color: #222;
-    text-decoration: underline;
     font-size: 20px;
 }
-
+#recent-articles-list li a:hover{
+    text-decoration: underline;
+}
+#recent-articles-list li .posted-on {
+    font-size: 15px;
+    text-decoration: none;
+}
 #hits {
     margin-top: 20px;
 }

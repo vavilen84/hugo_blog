@@ -4,7 +4,7 @@
         <br>
         <br>
         {{ range $key, $value := $taxonomy }}
-            <a class="underline localized" href="{{ $.Site.BaseURL }}tags/{{ $key }}">{{ $key }}</a>
+            <a class="underline localized" href="{{ $.Site.BaseURL }}categories/{{ $key }}">{{ $key }}</a>
         {{ end }}
     {{ end }}
 {{ end }}
