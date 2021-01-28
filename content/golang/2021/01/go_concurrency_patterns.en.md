@@ -1,10 +1,12 @@
 ---
 title: "Google I/O 2012 - Go Concurrency Patterns"
-publishdate: "2021-01-20"
-lastmod: "2021-01-20"
+publishdate: "2021-01-28"
+lastmod: "2021-01-28"
 categories:
     - "golang"
 tags:
+    - "goroutines"
+    - "concurrency"
     - "go channels"
     - "lecture notes"
 ---
@@ -23,7 +25,7 @@ If you have only one processor, your program can still be concurrent, but it can
 
 It is an independently executing function (like & sign during running process in console, which runs process in background). It is very cheap. It has its own call stack. 
 
-It is not a thread. There might be only one thread in a program with thousands of goroutines. Goroutines are multiplexed dynamically onto threads as needed. But if you think of it as a very cheap thread, you wont be far off.
+It is not a thread. There might be only one thread in a program with thousands of goroutines. Goroutines are multiplexed dynamically onto threads as needed. But if you think of it as a very cheap thread, you won't be far off.
 
 # Channels
 
@@ -173,7 +175,7 @@ Joe: 4
 Ann: 4
 You're both boring; I'm leaving.
 ```
-because of synchronization nature of channels, the two guys are taking turns, not only in printing the values out, but also in executing them. Because if Ann is ready to send a value but Joe hasn`t done that yet, Ann will still be blocked, waiting to deliver the value to main.
+If Ann is ready to send a value but Joe hasn`t done that yet, Ann will still be blocked, waiting to deliver the value to main.
 
 
 ## Multiplexing 
@@ -267,7 +269,7 @@ func fanIn(inputs ... <-chan Message) <-chan Message {
 
 # Select
 
-A control structure unique to concurrency. The reason channels and goroutines are built into the language 
+A control structure unique to concurrency. 
 
 A control structure  like a switch, that let's you control the behavior of your program based on what communications are able to proceed at any moment.
 
@@ -531,7 +533,7 @@ func Google(query string) (results []Result) {
 
 Q: How do we avoid discarding results from slow servers?
 
-A: Replicate the servers. Sed requests to multiple replicas, and use the first response.
+A: Replicate the servers. Send requests to multiple replicas, and use the first response.
 
 ```
 
@@ -622,7 +624,7 @@ tinyurl.com/gopowerseries
 
 # Don't overdo it
 
-They are fun to play with, but don't overuse these ideas. Goroutines and channels are big ideas. They are tools for program construction. But sometimes all you need is a reference counter. Go has "sync" and "sync/atomic" packages that provide mutexes, condition variables, etc. They provide tools for smaller problems. Often, these things will work together to solve a bigger problem. Always use the right tool for the job.
+They are fun to play with, but don't overuse these ideas. Goroutines and channels are big ideas. They are tools for program construction. Go has "sync" and "sync/atomic" packages that provide mutexes. They provide tools for smaller problems. Always use the right tool for the job.
 
 # Conclusion 
 

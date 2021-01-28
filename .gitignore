@@ -17,3 +17,5 @@ updateIdx/.env.prod
 /updateIdx/node_modules/*
 test/*
 !test/.gitignore
+tmp/*
+!tmp/.gitignore
