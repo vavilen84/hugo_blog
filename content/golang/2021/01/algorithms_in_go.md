@@ -17,11 +17,14 @@ Author code: https://github.com/vavilen84/algo
 
 What time complexity is: https://en.wikipedia.org/wiki/Time_complexity
 
+
 # Binary search
 
 Wikipedia: https://en.wikipedia.org/wiki/Binary_search_algorithm
 
 Author code: https://github.com/vavilen84/algo/blob/master/binary_search/binary_search.go
+
+Time complexity is logarithmic - O(log n)
 
 The algoritm is going to work only with sorted array. The main idea is:
 - divide dataset in two pieces
@@ -29,8 +32,6 @@ The algoritm is going to work only with sorted array. The main idea is:
 - choose correct piece
 - divide this piece in two pieces
 - etc... until we have correct value
-
-time complexity is logarithmic - O(log n)
 
 ```
 package binary_search
@@ -77,6 +78,8 @@ Author code: https://github.com/vavilen84/algo/blob/master/breadth_first_search/
 
 Book code: https://github.com/egonSchiele/grokking_algorithms/blob/master/06_breadth-first_search/Golang/01_breadth-first_search.go
 
+Time complexity is O(V+E)
+
 Breadth-first search is an algorithm for traversing or searching tree or graph data structures. 
 
 For example, our goal is to calculate number of interactions (graph edges) from start vertex to destination. Our example graph is
@@ -109,7 +112,7 @@ Our algorithm implementation consists of one recursive method. This method:
 - since neither "b" nor "d" are not targets - function adds "b" & "d" neighbours to queue and recursively calls itself passing as "vertices" argument just collected neighbours queue.
 - next iteration vertices should be {"a", "c", "a", "i"}
 - function skips "a" because it is our start, and we don't need to move in the opposite direction
-- function has optimization - already processed vertices should be added to "processed" map, so we don't move twice throw the one vertex
+- already processed vertices should be added to "processed" map, so we don't move twice throw the one vertex
 
 ```
 package breadth_first_search
@@ -138,5 +141,54 @@ func processVertexRecursive(start string, vertices []string, destination string,
 		}
 	}
 	processVertexRecursive(start, nextLevelVertices, destination, graph, result, processed) // process neighbours queue recursive
+}
+```
+
+# Bubble sort
+
+Wikipedia: https://en.wikipedia.org/wiki/Bubble_sort
+
+Author code: https://github.com/vavilen84/algo/blob/master/bubble_sort/bubble_sort.go
+
+Time complexity is quadratic O(n2)
+
+Current implementation is a little different from more frequent "double for" implementation - here we use recursion. Main idea of algorithm:
+- move from beginning of set to the end iteratively
+- each iteration should compare/swap two digits until all set is sorted
+
+```
+package bubble_sort
+
+func SortRecursive(input []int, i int, shifted bool, preLastIndex, iterationsCount int) ([]int, int) {
+	iterationsCount++ // sort iterations count
+	if i == 0 {
+		shifted = false // reset shifted flag for each index reset
+	}
+	if input[i] > input[i+1] { // compare two values
+		input[i], input[i+1] = input[i+1], input[i] // swap values if left is bigger
+		// handle pre-last index
+		if preLastIndex == i {
+			// if there was no shift except last 2 digits - so we change last two values and return result
+			if shifted == false {
+				return input, iterationsCount
+			}
+		}
+		shifted = true
+	} else {
+		// handle pre-last index
+		if preLastIndex == i {
+			// if there wes no shift and last two digits are sorted - so we return result
+			if shifted == false {
+				return input, iterationsCount
+			}
+		}
+	}
+	// handle pre-last index for both cases (shift/no shift)
+	if preLastIndex == i {
+		i = 0 // if pre-last index - reset index counter
+	} else {
+		i++
+	}
+	return SortRecursive(input, i, shifted, preLastIndex, iterationsCount)
 }
 ```
