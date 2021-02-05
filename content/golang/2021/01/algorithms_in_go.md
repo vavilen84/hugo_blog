@@ -192,3 +192,34 @@ func SortRecursive(input []int, i int, shifted bool, preLastIndex, iterationsCou
 	return SortRecursive(input, i, shifted, preLastIndex, iterationsCount)
 }
 ```
+
+# Dijkstra algorithm
+
+Wikipedia: https://en.wikipedia.org/wiki/Dijkstra%27s_algorithm
+
+Book code: https://github.com/egonSchiele/grokking_algorithms/blob/master/07_dijkstras_algorithm/Golang/01_dijkstras_algorithm.go
+
+Author code: https://github.com/vavilen84/algo/blob/master/dijkstra_algo/main.go
+
+Time complexity: O(n2) / O(n log n + m) / O(n log n + m log n)
+
+This algorithm is used to find a shortest path for a weighted graph. 
+
+Main idea is:
+- each vertex should have initial result values as infinity integer 
+- iterate over all "start" node vertex neighbours
+- set vertices result path accordingly to edges, because each edge value is lower than infinity
+- mark "start" vertex as "processed" (then, algorithm should skip already processed vertices)
+- choose neighbour with the lowest result path 
+- iterate over all neighbours (except "start" and already "processed" vertices)
+- set new result values by principle
+```
+if (edgeToNeighbour + currentNodeWeight) < neighbourResultValue {
+ neighbourResultValue = (edgeToNeighbour + currentNodeWeight)
+}
+```
+- mark current node as processed
+- choose not processed neighbour with the lowest result value 
+- etc... 
+
+until all graph nodes are visited.
