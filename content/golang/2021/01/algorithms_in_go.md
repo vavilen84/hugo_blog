@@ -24,8 +24,6 @@ Wikipedia: https://en.wikipedia.org/wiki/Binary_search_algorithm
 
 Author code: https://github.com/vavilen84/algo/blob/master/binary_search/binary_search.go
 
-Time complexity is logarithmic - O(log n)
-
 The algoritm is going to work only with sorted array. The main idea is:
 - divide dataset in two pieces
 - compare needle with first(last) element of data set piece
@@ -77,8 +75,6 @@ Wikipedia: https://en.wikipedia.org/wiki/Breadth-first_search
 Author code: https://github.com/vavilen84/algo/blob/master/breadth_first_search/main.go
 
 Book code: https://github.com/egonSchiele/grokking_algorithms/blob/master/06_breadth-first_search/Golang/01_breadth-first_search.go
-
-Time complexity is O(V+E)
 
 Breadth-first search is an algorithm for traversing or searching tree or graph data structures. 
 
@@ -150,8 +146,6 @@ Wikipedia: https://en.wikipedia.org/wiki/Bubble_sort
 
 Author code: https://github.com/vavilen84/algo/blob/master/bubble_sort/bubble_sort.go
 
-Time complexity is quadratic O(n2)
-
 Current implementation is a little different from more frequent "double for" implementation - here we use recursion. Main idea of algorithm:
 - move from beginning of set to the end iteratively
 - each iteration should compare/swap two digits until all set is sorted
@@ -201,8 +195,6 @@ Book code: https://github.com/egonSchiele/grokking_algorithms/blob/master/07_dij
 
 Author code: https://github.com/vavilen84/algo/blob/master/dijkstra_algo/main.go
 
-Time complexity: O(n2) / O(n log n + m) / O(n log n + m log n)
-
 This algorithm is used to find a shortest path for a weighted graph. 
 
 Main idea is:
@@ -223,3 +215,57 @@ if (edgeToNeighbour + currentNodeWeight) < neighbourResultValue {
 - etc... 
 
 until all graph nodes are visited.
+
+# Merge sort
+
+Wikipedia: https://en.wikipedia.org/wiki/Merge_sort
+
+Author code: https://github.com/vavilen84/algo/blob/master/merge_sort/main.go
+
+Main idea is:
+- recursively divide input slice (merge will start with 1 int slices, then - slices will grow)
+- merge using key-by-key comparison
+
+```
+package merge_sort
+
+func MergeSort(input []int) []int {
+	l := len(input)
+	if l == 1 {
+		// length validation
+		return input
+	}
+	// divide slice into 2 pieces
+	middleIdx := l / 2
+	left := input[:middleIdx]
+	right := input[middleIdx:]
+
+	// recursive merge
+	return Merge(MergeSort(left), MergeSort(right))
+}
+
+func Merge(left, right []int) []int {
+	result := make([]int, len(left)+len(right))
+	i := 0
+	// create new slice using key-by-key comparison left & right slices
+	for (len(left) > 0) && (len(right) > 0) {
+		if left[0] < right[0] {
+			result[i] = left[0]
+			left = left[1:]
+		} else {
+			result[i] = right[0]
+			right = right[1:]
+		}
+		i++
+	}
+	for j := 0; j < len(left); j++ {
+		result[i] = left[j]
+	}
+	for j := 0; j < len(right); j++ {
+		result[i] = right[j]
+	}
+	return result
+}
+
+```
+
