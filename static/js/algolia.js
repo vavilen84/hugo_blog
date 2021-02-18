@@ -1,7 +1,7 @@
 $(document).ready(function () {
     initAlgoliaClient();
 
-    hideSearchResults();
+    //hideSearchResults();
     onSearchInputKeyup();
 
     $('.search-result-wrap').css('left', $('.ais-SearchBox-input').offset().left);
@@ -34,6 +34,11 @@ function initAlgoliaClient() {
     const search = instantsearch({
         indexName: indexName + langPostfix,
         searchClient,
+        searchFunction(helper) {
+            if (helper.state.query) {
+                helper.search();
+            }
+        },
     });
 
     search.addWidgets([

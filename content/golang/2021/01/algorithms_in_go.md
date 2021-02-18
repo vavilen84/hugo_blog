@@ -3,10 +3,10 @@ title: "Algorithms in Golang"
 publishdate: "2021-01-30"
 lastmod: "2021-01-30"
 categories:
-- "golang"
-  tags:
-- "algorithms"
-- "book notes"
+  - "golang"
+tags:
+  - "algorithms"
+  - "book notes"
 ---
 
 This article based on Aditya Bhargava "Grokking Algorithms" book. This article could be helpful during preparation to an interview.
