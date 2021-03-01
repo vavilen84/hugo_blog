@@ -364,4 +364,42 @@ func Sort(input []int) []int {
 }
 ```
 
+# Dynamic programming
 
+Wikipedia: https://en.wikipedia.org/wiki/Dynamic_programming
+
+Book code: https://github.com/egonSchiele/grokking_algorithms/blob/master/09_dynamic_programming/golang/01_longest_common_subsequence.go
+
+Main idea is to divide the main problem into sub-problems  and solve each sub-problem only one time. 
+
+Example - finding the longest substring (subsequent) included in  two words.
+
+Main idea:
+- build 2d matrix
+- compare symbol by symbol using nested loop
+
+If we need to find a substring, then solution should look like:
+
+![](/posts/dynamical_programming_substring.png)
+
+```
+if word_a[i] == word_b[j]: Буквы совпадают
+ cell[i][j] = cell[i-1][j-1] + 1 Буквы не совпадают
+else:
+ cell[i][j] = 0
+```
+
+
+If we need to find a subsequent, then solution should look like:
+
+
+![](/posts/dynamical_programming_subsequent.png)
+
+```
+if word_a[i] == word_b[j]: Буквы совпадают
+ cell[i][j] = cell[i-1][j-1] + 1 Буквы не совпадают
+else:
+	cell[i][j] = cell[i-1][j]
+    if cell[i][j] < cell[i][j-1]:
+        cell[i][j] = cell[i][j-1]
+```
