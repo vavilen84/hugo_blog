@@ -13,7 +13,7 @@ This article based on Aditya Bhargava "Grokking Algorithms" book. This article c
 
 Book code: https://github.com/egonSchiele/grokking_algorithms
 
-Author code: https://github.com/vavilen84/algo
+Author`s code: https://github.com/vavilen84/algo
 
 What time complexity is: https://en.wikipedia.org/wiki/Time_complexity
 
@@ -22,7 +22,9 @@ What time complexity is: https://en.wikipedia.org/wiki/Time_complexity
 
 Wikipedia: https://en.wikipedia.org/wiki/Binary_search_algorithm
 
-Author code: https://github.com/vavilen84/algo/blob/master/binary_search/binary_search.go
+Author`s code: https://github.com/vavilen84/algo/blob/master/binary_search/binary_search.go
+
+Time complexity: worst - logarithmic O(log n); best - constant O(1) ( ! the author can be wrong and asks to check this information ! )
 
 The algoritm is going to work only with sorted array. The main idea is:
 - divide dataset in two pieces
@@ -72,7 +74,9 @@ func SearchInIntSlice(haystack []int, needle int) (result bool, iterationsCount 
 
 Wikipedia: https://en.wikipedia.org/wiki/Breadth-first_search
 
-Author code: https://github.com/vavilen84/algo/blob/master/breadth_first_search/main.go
+Author`s code: https://github.com/vavilen84/algo/blob/master/breadth_first_search/main.go
+
+Time complexity: worst - O(V+E)  ( ! the author can be wrong and asks to check this information ! )
 
 Book code: https://github.com/egonSchiele/grokking_algorithms/blob/master/06_breadth-first_search/Golang/01_breadth-first_search.go
 
@@ -144,7 +148,9 @@ func processVertexRecursive(start string, vertices []string, destination string,
 
 Wikipedia: https://en.wikipedia.org/wiki/Bubble_sort
 
-Author code: https://github.com/vavilen84/algo/blob/master/bubble_sort/bubble_sort.go
+Author`s code: https://github.com/vavilen84/algo/blob/master/bubble_sort/bubble_sort.go
+
+Time complexity: worst - quadratic O(n2); best - linearithmic O(n log n) or O(n)  ( ! the author can be wrong and asks to check this information ! )
 
 Current implementation is a little different from more frequent "double for" implementation - here we use recursion. Main idea of algorithm:
 - move from beginning of set to the end iteratively
@@ -193,7 +199,9 @@ Wikipedia: https://en.wikipedia.org/wiki/Dijkstra%27s_algorithm
 
 Book code: https://github.com/egonSchiele/grokking_algorithms/blob/master/07_dijkstras_algorithm/Golang/01_dijkstras_algorithm.go
 
-Author code: https://github.com/vavilen84/algo/blob/master/dijkstra_algo/main.go
+Author`s code: https://github.com/vavilen84/algo/blob/master/dijkstra_algo/main.go
+
+Time complexity: worst - O(E + V log V)  ( ! the author can be wrong and asks to check this information ! )
 
 This algorithm is used to find a shortest path for a weighted graph. 
 
@@ -220,7 +228,9 @@ until all graph nodes are visited.
 
 Wikipedia: https://en.wikipedia.org/wiki/Merge_sort
 
-Author code: https://github.com/vavilen84/algo/blob/master/merge_sort/main.go
+Author`s code: https://github.com/vavilen84/algo/blob/master/merge_sort/main.go
+
+Time complexity: linearithmic O(n log n)  ( ! the author can be wrong and asks to check this information ! )
 
 Main idea is:
 - recursively divide input slice (merge will start with 1 int slices, then - slices will grow)
@@ -268,4 +278,90 @@ func Merge(left, right []int) []int {
 }
 
 ```
+
+# Quick sort
+
+Wikipedia: https://en.wikipedia.org/wiki/Quicksort
+
+Author`s code: https://github.com/vavilen84/algo/blob/master/quick_sort/quick_sort.go
+
+Book code: https://github.com/egonSchiele/grokking_algorithms/blob/master/04_quicksort/golang/05_quicksort.go
+
+Time complexity: worst - linear O(n2); best - linearithmic O(n log n)  ( ! the author can be wrong and asks to check this information ! )
+
+Main idea is:
+- take first int as pivot
+- itearate over rest elements
+- separate elements which are lower than pivat and which are bigger
+- recursively sort lower elements, add pivot, add recursively sorted elements which are bigger
+
+```
+package quick_sort
+
+func Sort(input []int) []int {
+	l := len(input)
+	if l < 2 {
+		return input
+	}
+	less := make([]int, 0)
+	bigger := make([]int, 0)
+	pivot := input[0]
+	for _, v := range input[1:] {
+		if v > pivot {
+			bigger = append(bigger, v)
+		} else {
+			less = append(less, v)
+		}
+	}
+	input = append(Sort(less), pivot)
+	input = append(input, Sort(bigger)...)
+	return input
+}
+```
+
+# Selection sort
+
+Selection sort: https://en.wikipedia.org/wiki/Selection_sort
+
+Author`s code: https://github.com/vavilen84/algo/blob/master/selection_sort/selection_sort.go
+
+Book code: https://github.com/egonSchiele/grokking_algorithms/blob/master/02_selection_sort/Golang/01_selection_sort.go
+
+Time complexity: quadratic O(n2) ( ! the author can be wrong and asks to check this information ! )
+
+Main idea is:
+- iterate input
+- each iteration should: 1) find smallest integer 2) put it in new result set 3) decrease input  
+
+```
+package selection_sort
+
+// panics if input has zero length
+func FindSmallestValuePosition(input []int) int {
+	smallestValuePosition := 0
+	smallestValue := input[smallestValuePosition]
+	for k, v := range input {
+		if v < smallestValue {
+			smallestValue = v
+			smallestValuePosition = k
+		}
+	}
+	return smallestValuePosition
+}
+
+func Sort(input []int) []int {
+	l := len(input)
+	if l == 0 {
+		return input
+	}
+	sorted := make([]int, l)
+	for i := 0; i < l; i++ {
+		p := FindSmallestValuePosition(input)
+		sorted[i] = input[p]
+		input = append(input[:p], input[p+1:]...)
+	}
+	return sorted
+}
+```
+
 
