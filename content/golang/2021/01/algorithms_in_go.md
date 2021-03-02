@@ -399,7 +399,7 @@ If we need to find a subsequent, then solution should look like:
 if word_a[i] == word_b[j]: Буквы совпадают
  cell[i][j] = cell[i-1][j-1] + 1 Буквы не совпадают
 else:
-	cell[i][j] = cell[i-1][j]
+    cell[i][j] = cell[i-1][j]
     if cell[i][j] < cell[i][j-1]:
         cell[i][j] = cell[i][j-1]
 ```
