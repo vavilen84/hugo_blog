@@ -1,12 +1,8 @@
 {{ partial "head.html" . }}
 <div class="home-page">
     <div class="home-wrap">
-        <h1>{{.Description}}</h1>
-        <div class="fl-left home-page-img-wrap">
-
-        </div>
-        <div class="ml20px fl-left home-page-description-wrap">
-            {{.Summary}}
+        <div class="right-sidebar">
+            {{ partial "tags_list.html" . }}
         </div>
         <div class="clear"></div>
         <div class="home-page-content-wrap">

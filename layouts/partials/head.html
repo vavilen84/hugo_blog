@@ -66,18 +66,27 @@
         <div class="holder nav-block">
             <ul class="nav fl-left">
                 <li>
-                    <a class="btn btn-info localized" href="{{ .Site.BaseURL }}">{{ .Site.Title }}</a>
-                    <a class="btn btn-info localized" href="{{ .Site.BaseURL }}categories/golang/">Golang</a>
-                    <a class="btn btn-info localized" href="{{ .Site.BaseURL }}categories/php/">PHP</a>
+                    <a class="localized" href="{{ .Site.BaseURL }}">{{ .Site.Title }}</a>
+                    <a class=" localized" href="{{ .Site.BaseURL }}categories/golang/">Golang</a>
+                    <a class="localized" href="{{ .Site.BaseURL }}categories/php/">PHP</a>
                 </li>
             </ul>
-            <div class="fl-left">
-                {{ partial "search.html" . }}
+            <div class="fl-right">
+                <div class="fl-left">
+                    {{ partial "search.html" . }}
+                </div>
+                <div class="fl-left">
+                    <ul class="lang-nav fl-right">
+                        <li>
+                            <a class="lang-link" id="en-link" href="">EN</a>
+                        </li>
+                        <li>
+                            <a class="lang-link" id="ru-link" href="">RU</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="clear"></div>
             </div>
-            <ul class="lang-nav fl-right">
-                <a class="btn btn-info lang-link" id="en-link" href="">EN</a>
-                <a class="btn btn-info lang-link" id="ru-link" href="">RU</a>
-            </ul>
             <div class="clear"></div>
         </div>
         <div class="border"></div>

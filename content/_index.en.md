@@ -1,14 +1,20 @@
 ---
 title: "Home"
-description: "Hey, hope you are well!!!"
-summary: "My name is Vladimir, I am a software engineer and this is my blog. Here you can find: reviews, articles about different integrations, articles translations, notes from books. I would be glad if you manage to find here anything interesting and helpful for yourself. Nice reading!"
 ---
 
-### By tags:
-{{<home_page_tags >}}
+# Blog about Golang / PHP / Javascript
 
-### By categories:
-{{<home_page_categories >}}
+Hey, hope you are well! My name is Vladimir, I am a software engineer and this is my blog. 
 
-### Recent articles
+Here you can find: 
+- reviews
+- integrations 
+- brief book notes  
+  
+I would be glad if you manage to find here anything interesting and helpful for yourself. Nice reading!
+
+{{<br >}}
+{{<hr >}}
+
+# Recent articles
 {{<home_page_recent_articles >}}
