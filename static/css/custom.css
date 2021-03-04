@@ -312,3 +312,7 @@ body {
 .home-page-tags {
     margin-bottom: 48px;
 }
+
+.hidden{
+    display: none;
+}

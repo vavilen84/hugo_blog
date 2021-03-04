@@ -1,10 +1,15 @@
 {{ partial "head.html" . }}
 <script src="/js/links-target-blank-fixer.js"></script>
+<link rel="stylesheet"
+      href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/default.min.css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+<script src="/js/initHljs.js"></script>
 <div class="relative">
     <h1>{{.Title}}</h1>
     <div class="post">
         <div class="posted-on">Posted on {{ .PublishDate.Format "January 2, 2006" }}</div>
         <div class="posted-on">Updated on {{ .Lastmod.Format "January 2, 2006" }}</div>
+        <div class="hidden" id="pl">{{ .Summary }}</div>
         {{.Content}}
     </div>
     <div class="right-sidebar">

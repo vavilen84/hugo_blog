@@ -1,7 +1,8 @@
 ---
 title: "Algorithms in Golang"
-publishdate: "2021-01-30"
-lastmod: "2021-01-30"
+publishdate: "2021-03-04"
+lastmod: "2021-03-04"
+summary: "go"
 categories:
   - "golang"
 tags:
@@ -9,14 +10,13 @@ tags:
   - "book notes"
 ---
 
-This article based on Aditya Bhargava "Grokking Algorithms" book. This article could be helpful during preparation to an interview.
+This article is based on Aditya Bhargava "Grokking Algorithms" book. This article could be helpful during preparation for an interview. 
 
 Book code: https://github.com/egonSchiele/grokking_algorithms
 
 Author`s code: https://github.com/vavilen84/algo
 
-What time complexity is: https://en.wikipedia.org/wiki/Time_complexity
-
+What time complexity is: https://en.wikipedia.org/wiki/Time_complexity . Information about time complexity of algorithms described in this article was taken from different resources, so the author asks to double check this information.
 
 # Binary search
 
@@ -24,13 +24,13 @@ Wikipedia: https://en.wikipedia.org/wiki/Binary_search_algorithm
 
 Author`s code: https://github.com/vavilen84/algo/blob/master/binary_search/binary_search.go
 
-Time complexity: worst - logarithmic O(log n); best - constant O(1) ( ! the author can be wrong and asks to check this information ! )
+Time complexity: worst - logarithmic O(log n); best - constant O(1) 
 
-The algoritm is going to work only with sorted array. The main idea is:
+The algorithm is going to work only with sorted arrays. The main idea is:
 - divide dataset in two pieces
 - compare needle with first(last) element of data set piece
 - choose correct piece
-- divide this piece in two pieces
+- divide selected piece in two pieces
 - etc... until we have correct value
 
 ```
@@ -40,20 +40,14 @@ import "sort"
 
 func SearchInIntSlice(haystack []int, needle int) (result bool, iterationsCount int) {
 	sort.Ints(haystack) // this algorithm will not work with not sorted list
-
 	lowKey := 0                  // first index
 	highKey := len(haystack) - 1 // last index
-
 	if (haystack[lowKey] > needle) || (haystack[highKey] < needle) {
 		return // target value is not in the range
 	}
-
 	for lowKey <= highKey { // iteratively reduce list
-
 		iterationsCount++
-
 		mid := (lowKey + highKey) / 2 // middle index
-
 		if haystack[mid] == needle {
 			result = true // we found our value
 			return
@@ -76,20 +70,20 @@ Wikipedia: https://en.wikipedia.org/wiki/Breadth-first_search
 
 Author`s code: https://github.com/vavilen84/algo/blob/master/breadth_first_search/main.go
 
-Time complexity: worst - O(V+E)  ( ! the author can be wrong and asks to check this information ! )
+Time complexity: worst - O(V+E)
 
 Book code: https://github.com/egonSchiele/grokking_algorithms/blob/master/06_breadth-first_search/Golang/01_breadth-first_search.go
 
 Breadth-first search is an algorithm for traversing or searching tree or graph data structures. 
 
-For example, our goal is to calculate number of interactions (graph edges) from start vertex to destination. Our example graph is
+For example, our goal is to calculate the number of interactions (graph edges) from start vertex to destination. Our example graph is
 
 ```
 a -- b -- c -- f
-     |		   |
+     |         |
      d -- i -- j
 ```
-Let`s imagine, that we need to calculate - how many steps we need from "a" to "i" (3 steps a -> b, b -> d, d -> i). We can represent our graph in Go like
+Let's imagine, that we need to calculate - how many steps we need from "a" to "i" (3 steps a -> b, b -> d, d -> i). We can represent our graph in Go like
 ```
 graph := map[string][]string{
     "a": {"b", "d"},
@@ -102,17 +96,17 @@ graph := map[string][]string{
 }
 ```
 
-Main idea of algorithm is to iterate and compare over all vertices neighbours recursively.
+The main idea is to iterate and compare over all vertices neighbours recursively.
 
-Our algorithm implementation consists of one recursive method. This method:
-- Increase steps counter (as we need to calculate an amount of steps)
+Our algorithm implementation consists of one recursive method. This method should:
+- Increase steps counter (steps calculation)
 - iterate over "start" vertex neighbours {"b", "d"}
-- compare if neighbour is target
-- if so - function calls return
-- since neither "b" nor "d" are not targets - function adds "b" & "d" neighbours to queue and recursively calls itself passing as "vertices" argument just collected neighbours queue.
+- compare if neighbour is the target
+- if so - function should call return
+- since neither "b" nor "d" are not the target - function should add "b" & "d" neighbours to queue and recursively call itself passing as "vertices" argument just collected neighbours queue
 - next iteration vertices should be {"a", "c", "a", "i"}
-- function skips "a" because it is our start, and we don't need to move in the opposite direction
-- already processed vertices should be added to "processed" map, so we don't move twice throw the one vertex
+- function skips "a" because it is our start vertex (we don't need to move in the opposite direction)
+- already processed vertices should be skipped also (added to "processed" map, so we don't move twice throw the one vertex)
 
 ```
 package breadth_first_search
@@ -150,9 +144,9 @@ Wikipedia: https://en.wikipedia.org/wiki/Bubble_sort
 
 Author`s code: https://github.com/vavilen84/algo/blob/master/bubble_sort/bubble_sort.go
 
-Time complexity: worst - quadratic O(n2); best - linearithmic O(n log n) or O(n)  ( ! the author can be wrong and asks to check this information ! )
+Time complexity: worst - quadratic O(n2); best - linearithmic O(n log n) or O(n)
 
-Current implementation is a little different from more frequent "double for" implementation - here we use recursion. Main idea of algorithm:
+The main idea is:
 - move from beginning of set to the end iteratively
 - each iteration should compare/swap two digits until all set is sorted
 
@@ -203,9 +197,9 @@ Author`s code: https://github.com/vavilen84/algo/blob/master/dijkstra_algo/main.
 
 Time complexity: worst - O(E + V log V)  ( ! the author can be wrong and asks to check this information ! )
 
-This algorithm is used to find a shortest path for a weighted graph. 
+This algorithm is used to find the shortest path for a weighted graph. 
 
-Main idea is:
+The main idea is:
 - each vertex should have initial result values as infinity integer 
 - iterate over all "start" node vertex neighbours
 - set vertices result path accordingly to edges, because each edge value is lower than infinity
@@ -232,7 +226,7 @@ Author`s code: https://github.com/vavilen84/algo/blob/master/merge_sort/main.go
 
 Time complexity: linearithmic O(n log n)  ( ! the author can be wrong and asks to check this information ! )
 
-Main idea is:
+The main idea is:
 - recursively divide input slice (merge will start with 1 int slices, then - slices will grow)
 - merge using key-by-key comparison
 
@@ -289,10 +283,10 @@ Book code: https://github.com/egonSchiele/grokking_algorithms/blob/master/04_qui
 
 Time complexity: worst - linear O(n2); best - linearithmic O(n log n)  ( ! the author can be wrong and asks to check this information ! )
 
-Main idea is:
+The main idea is:
 - take first int as pivot
-- itearate over rest elements
-- separate elements which are lower than pivat and which are bigger
+- iterate over rest elements
+- separate elements which are lower than pivot and which are bigger
 - recursively sort lower elements, add pivot, add recursively sorted elements which are bigger
 
 ```
@@ -329,7 +323,7 @@ Book code: https://github.com/egonSchiele/grokking_algorithms/blob/master/02_sel
 
 Time complexity: quadratic O(n2) ( ! the author can be wrong and asks to check this information ! )
 
-Main idea is:
+The main idea is:
 - iterate input
 - each iteration should: 1) find smallest integer 2) put it in new result set 3) decrease input  
 
@@ -370,11 +364,9 @@ Wikipedia: https://en.wikipedia.org/wiki/Dynamic_programming
 
 Book code: https://github.com/egonSchiele/grokking_algorithms/blob/master/09_dynamic_programming/golang/01_longest_common_subsequence.go
 
-Main idea is to divide the main problem into sub-problems  and solve each sub-problem only one time. 
-
 Example - finding the longest substring (subsequent) included in  two words.
 
-Main idea:
+The main idea is to divide the main problem into sub-problems and solve each sub-problem only once:
 - build 2d matrix
 - compare symbol by symbol using nested loop
 
@@ -396,9 +388,8 @@ If we need to find a subsequent, then solution should look like:
 ![](/posts/dynamical_programming_subsequent.png)
 
 ```
-if word_a[i] == word_b[j]: Буквы совпадают
- cell[i][j] = cell[i-1][j-1] + 1 Буквы не совпадают
-else:
+if word_a[i] == word_b[j]: 
+ cell[i][j] = cell[i-1][j-1] + 1 
     cell[i][j] = cell[i-1][j]
     if cell[i][j] < cell[i][j-1]:
         cell[i][j] = cell[i][j-1]
