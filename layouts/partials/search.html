@@ -12,7 +12,7 @@
 </div>
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.css@7/themes/algolia-min.css">
-<link href="/css/algolia.css" rel="stylesheet">
+<link href="/css/algolia.css{{ if $assetBusting }}?timestamp={{ now.Unix }}{{ end }}" rel="stylesheet">
 
 <script src="https://cdn.jsdelivr.net/algoliasearch/3.32.0/algoliasearchLite.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/instantsearch.js@4.8.4"></script>
