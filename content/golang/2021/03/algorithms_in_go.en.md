@@ -1,7 +1,7 @@
 ---
 title: "Algorithms in Golang"
-publishdate: "2021-03-04"
-lastmod: "2021-03-04"
+publishdate: "2021-03-05"
+lastmod: "2021-03-05"
 summary: "go"
 categories:
   - "golang"
@@ -10,7 +10,7 @@ tags:
   - "book notes"
 ---
 
-This article is based on Aditya Bhargava "Grokking Algorithms" book. This article could be helpful during preparation for an interview. 
+This article is based on Aditya Bhargava "Grokking Algorithms" book. Article could be helpful during preparation for an interview. 
 
 Book code: https://github.com/egonSchiele/grokking_algorithms
 
@@ -39,24 +39,27 @@ package binary_search
 import "sort"
 
 func SearchInIntSlice(haystack []int, needle int) (result bool, iterationsCount int) {
-	sort.Ints(haystack) // this algorithm will not work with not sorted list
-	lowKey := 0                  // first index
+	sort.Ints(haystack) // this algorithm is not going to work with unsorted list
+	lowKey := 0 // first index
 	highKey := len(haystack) - 1 // last index
 	if (haystack[lowKey] > needle) || (haystack[highKey] < needle) {
 		return // target value is not in the range
 	}
-	for lowKey <= highKey { // iteratively reduce list
+	for lowKey <= highKey { 
+	    // reduce list iteratively
 		iterationsCount++
 		mid := (lowKey + highKey) / 2 // middle index
 		if haystack[mid] == needle {
 			result = true // we found our value
 			return
 		}
-		if haystack[mid] < needle { // if needle is bigger than middle - we take only part with highest values by increasing lowKey
+		if haystack[mid] < needle { 
+		    // if needle is bigger than middle - we only take a part with highest values by increasing lowKey
 			lowKey = mid + 1
 			continue
 		}
-		if haystack[mid] > needle { // if needle is smaller than middle - we take only part with lowest values by decreasing highKey
+		if haystack[mid] > needle { 
+		    // if needle is smaller than middle - we only take a part with lowest values by decreasing highKey
 			highKey = mid - 1
 		}
 	}
@@ -117,8 +120,15 @@ func runAlgo(graph map[string][]string, start, destination string) (result int) 
 	return
 }
 
-func processVertexRecursive(start string, vertices []string, destination string, graph *map[string][]string, result *int, processed *map[string]bool) {
-	*result++                              // recursive iterations counter
+func processVertexRecursive(
+	start string,
+	vertices []string,
+	destination string,
+	graph *map[string][]string,
+	result *int,
+	processed *map[string]bool,
+) {
+	*result++ // iterations counter
 	nextLevelVertices := make([]string, 0) // queue for neighbours
 	for _, v := range vertices {
 		if v == start {
@@ -134,7 +144,9 @@ func processVertexRecursive(start string, vertices []string, destination string,
 			nextLevelVertices = append(nextLevelVertices, (*graph)[v]...) // add all neighbours to queue
 		}
 	}
-	processVertexRecursive(start, nextLevelVertices, destination, graph, result, processed) // process neighbours queue recursive
+
+	// process neighbours queue recursively
+	processVertexRecursive(start, nextLevelVertices, destination, graph, result, processed)
 }
 ```
 
@@ -154,9 +166,9 @@ The main idea is:
 package bubble_sort
 
 func SortRecursive(input []int, i int, shifted bool, preLastIndex, iterationsCount int) ([]int, int) {
-	iterationsCount++ // sort iterations count
+	iterationsCount++ // iterations counter
 	if i == 0 {
-		shifted = false // reset shifted flag for each index reset
+		shifted = false // reset shifted flag after each index reset
 	}
 	if input[i] > input[i+1] { // compare two values
 		input[i], input[i+1] = input[i+1], input[i] // swap values if left is bigger
@@ -171,7 +183,7 @@ func SortRecursive(input []int, i int, shifted bool, preLastIndex, iterationsCou
 	} else {
 		// handle pre-last index
 		if preLastIndex == i {
-			// if there wes no shift and last two digits are sorted - so we return result
+			// if there was no shift and last two digits are sorted - so we return result
 			if shifted == false {
 				return input, iterationsCount
 			}
@@ -195,7 +207,7 @@ Book code: https://github.com/egonSchiele/grokking_algorithms/blob/master/07_dij
 
 Author`s code: https://github.com/vavilen84/algo/blob/master/dijkstra_algo/main.go
 
-Time complexity: worst - O(E + V log V)  ( ! the author can be wrong and asks to check this information ! )
+Time complexity: worst - O(E + V log V)  
 
 This algorithm is used to find the shortest path for a weighted graph. 
 
@@ -224,10 +236,10 @@ Wikipedia: https://en.wikipedia.org/wiki/Merge_sort
 
 Author`s code: https://github.com/vavilen84/algo/blob/master/merge_sort/main.go
 
-Time complexity: linearithmic O(n log n)  ( ! the author can be wrong and asks to check this information ! )
+Time complexity: linearithmic O(n log n) 
 
 The main idea is:
-- recursively divide input slice (merge will start with 1 int slices, then - slices will grow)
+- divide input slice recursively (merge will start with 1 int slices, then - slices will grow)
 - merge using key-by-key comparison
 
 ```
@@ -281,7 +293,7 @@ Author`s code: https://github.com/vavilen84/algo/blob/master/quick_sort/quick_so
 
 Book code: https://github.com/egonSchiele/grokking_algorithms/blob/master/04_quicksort/golang/05_quicksort.go
 
-Time complexity: worst - linear O(n2); best - linearithmic O(n log n)  ( ! the author can be wrong and asks to check this information ! )
+Time complexity: worst - quadratic O(n2); best - linearithmic O(n log n)  
 
 The main idea is:
 - take first int as pivot
@@ -321,7 +333,7 @@ Author`s code: https://github.com/vavilen84/algo/blob/master/selection_sort/sele
 
 Book code: https://github.com/egonSchiele/grokking_algorithms/blob/master/02_selection_sort/Golang/01_selection_sort.go
 
-Time complexity: quadratic O(n2) ( ! the author can be wrong and asks to check this information ! )
+Time complexity: quadratic O(n2)
 
 The main idea is:
 - iterate input
@@ -375,8 +387,8 @@ If we need to find a substring, then solution should look like:
 ![](/posts/dynamical_programming_substring.png)
 
 ```
-if word_a[i] == word_b[j]: Буквы совпадают
- cell[i][j] = cell[i-1][j-1] + 1 Буквы не совпадают
+if word_a[i] == word_b[j]: 
+ cell[i][j] = cell[i-1][j-1] + 1
 else:
  cell[i][j] = 0
 ```
@@ -395,3 +407,4 @@ if word_a[i] == word_b[j]:
         cell[i][j] = cell[i][j-1]
 ```
 
+The end of the article.
