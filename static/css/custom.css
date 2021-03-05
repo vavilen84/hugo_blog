@@ -308,10 +308,20 @@ body {
     margin-top: 20px;
 }
 
-.home-page-categories,
-.home-page-tags {
-    margin-bottom: 48px;
+
+.home-page-tags h2 {
+    padding: 0;
+    margin: 0;
+    font-size: 18px;
+    display: inline;
+    text-decoration: underline;
 }
+
+.wrapper ul.home-page-tags {
+    margin:0;
+    padding: 0;
+}
+
 
 .hidden{
     display: none;

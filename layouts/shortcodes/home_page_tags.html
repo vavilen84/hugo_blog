@@ -3,7 +3,9 @@
     {{if eq $taxonomyname "tags" }}
     {{ range $key, $value := $taxonomy }}
     <li>
-        <a class="underline localized btn btn-info" href="{{ $.Site.BaseURL }}tags/{{ $key }}">{{ $key }}</a>
+        <a class="underline localized" href="{{ $.Site.BaseURL }}tags/{{ $key }}">
+            <h2>{{ $key }}</h2>
+        </a>
     </li>
     {{ end }}
     {{ end }}

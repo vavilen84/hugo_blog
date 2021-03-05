@@ -16,5 +16,11 @@ I would be glad if you manage to find here anything interesting and helpful for 
 {{<br >}}
 {{<hr >}}
 
+# Tags
+{{<home_page_tags >}}
+
+{{<br >}}
+{{<hr >}}
+
 # Recent articles
 {{<home_page_recent_articles >}}
