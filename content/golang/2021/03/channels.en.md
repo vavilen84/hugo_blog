@@ -5,23 +5,23 @@ lastmod: "2021-03-05"
 summary: "go"
 categories:
 - "golang"
-  tags:
+tags:
 - "go channels"
 - "book notes"
 ---
 
 {{<the_go_pl_notes_en >}}
 
-# Канал
+# Channel
 
-Канал - средство связи между горутинами. Каналы передают значения одного типа (тип канала).
+A channel is a way of communication between goroutines. Channels transmit values of the same type (channel type).
 
-Для создания канала мы используем встроенную функцию make
+To create a channel, we use the built-in function make
 ```
-ch := make(chan int) // ch имеет тип 'chan int'
+ch := make(chan int) // ch has 'chan int' type
 ```
 
-Канал - ссылочный тип
+Channel is 'reference' type
 ```
 	var nilChannel chan int
 	leftmost := make(chan int)
@@ -37,7 +37,7 @@ ch := make(chan int) // ch имеет тип 'chan int'
 	}()
 	fmt.Println(<-left)
 ```
-вывод
+output
 ```
 0xc000094060
 0xc000094060
@@ -47,56 +47,48 @@ true
 1
 
 ```
-Нулевое значение канала - nil.
+Initial channel value is nil.
 
-Канал поддерживает 2 типа операций - запись и чтение:
+Channels support 2 types of operations - read and write:
 ```
-ch <- x // запись
-x = <- ch // чтение
-<-ch // чтение без использования результата
+ch <- x // write
+x = <- ch // read
+<-ch // read without using result
 ```
 
-Каналы поддерживают опeрацию закрытия
+Channels support 'close' operation
 ```
 close(ch)
 ```
-после этого, любая попытка записи в канал вызовет панику. Операции получения, примененные к закрытому каналу, приводят к получению значений, которые были отправлены ранее, до тех пор, пока неполученных значений не останется; любые дальнейшие попытки получить значения приводят к немедленному завершению операции и возврату нулевого значения типа элемента канала.
+after that, any attempt to write to the channel will cause panic. Receive operations applied to a closed channel return values that were previously sent until there are no values in channel; any further attempts to retrieve the values result in an immediate completion of the operation and the return of a null value of the channel element type.
 
-Нельзя закрыть канал для чтения. Попытка закрыть канал только для получения приводит к ошибке времени компиляции.
+You cannot close the read channel. Attempting to close a receive-only pipe results in a compile-time error.
 
-Канал, созданный с помощью простого вызова make называется небуферизованным каналом, но make принимает необязательный второй аргумент, целое значение, которое называется емкостью канала. Если емкость канала ненулевая - make создает буферизованный канал.
-Небуферизованные каналы (в отличие от буферизованных) поддерживают синхронизацию между горутинами.
+A pipe created with a simple 'make' call is called an unbuffered pipe, but 'make' takes an optional second argument (an integer value) called the capacity of the pipe. If the channel capacity is nonzero - 'make' creates a buffered channel. Unbuffered channels (as opposed to buffered ones) maintain synchronization between goroutines.
 ```
-ch = make(chan int) // Небуферизованный канал
-ch = make(chan int, 0) // Небуферизованный канал
-ch = make(chan int, 3) // Буферизованный канал с емкостью 3
+ch = make(chan int) // Unbuffered
+ch = make(chan int, 0) // Unbuffered
+ch = make(chan int, 3) // Buffered with capacity 3
 ```
 
-# Небуферизованные каналы
+# Unbuffered channels
 
-Операция отправления в небуферизованный канал блокирует go-подпрограмму до
-тех пор, пока другая go-подпрограмма не выполнит соответствующее получение из
-того же канала, после чего значение становится переданным, и обе go-подпрограммы
-продолжаются. И наоборот, если первой сделана попытка выполнить операцию получения, принимающая go-подпрограмма блокируется до тех пор, пока другая go-
-подпрограмма не выполнит отправление значения в тот же канал.
-Связь по небуферизованному каналу приводит к синхронизации операций отправления и получения. По этой причине небуферизованные каналы иногда называют
-синхронными. Когда значение отправляется в небуферизованный канал, получение
-значения предшествует продолжению работы отправляющей go-подпрограммы.
+A send operation to an unbuffered channel will block the go subroutine until another go subroutine does the corresponding get from the same channel, after which the value becomes transferred, and both go-routines continue. Conversely, if the first attempt is made to perform a get operation, the receiving go-subroutine will block until the other go-the subroutine will not send the value to the same channel. Communication over an unbuffered channel results in synchronization of send and receive operations. For this reason, unbuffered channels are sometimes called synchronous. When a value is sent to an unbuffered channel, receiving value precedes the continuation of the sending subroutine.
 
-Не существует способа непосредственно проверить, закрыт ли канал, но есть вариант операции получения, которая возвращает два результата: полученный из канала элемент и логическое значение, условно называемое ok, которое равно true при успешном получении значения и false — при получении из закрытого и опустошенного канала.
+There is no way to directly check if the channel is closed, but there is a variant of the get operation that returns two results: the element received from the channel and a boolean value, conventionally called 'ok', which is 'true' if the value is successfully received and 'false' if received from a closed and empty channel.
 ```
 go func() {
     for {
         х, ok := <-naturals
         if !ok {
-            break // Канал закрыт и опустошен
+            break // channel is closed and empty
         }
         squares <- х * х
     }
     close(squares)
 }()
 ```
-альтернативный вариант - цикл по диапазону
+an alternative way is a range loop
 ```
 func main() {
 	naturals := make(chan int)
@@ -121,37 +113,30 @@ func main() {
 	}
 }
 ```
-Вам не нужно закрывать каждый канал по завершении работы с ним. Необходимо
-закрывать каналы тогда, когда важно сообщить принимающей go-подпрограмме, что
-все данные уже отправлены. Ресурсы канала, который сборщик мусора определяет
-как недоступный, будут освобождены в любом случае, независимо от того, закрыт ли
-он. Не путайте это с операцией закрытия открытых файлов; вызывать метод close
-важно для каждого файла, работа с которым завершена. Попытка закрыть уже закрытый канал вызывает аварийную ситуацию, так же как
-и закрытие нулевого канала.
+You do not need to close each channel after you finish working with it. It is necessary close channels when it is important to tell the receiving go-subroutine that all data has already been sent. Channel resources that the garbage collector defines as inaccessible, will be released in any case, regardless of whether it is closed or not. Do not confuse this with closing open files; call the 'close' method important for every file that you are finished with. An attempt to close an already closed channel causes panic, as well as closing nil channel.
 
-# Однонаправленные каналы
+# Unidirectional channels
 
-Нарушения применения каналов обнаруживаются во время компиляции. Преобразования двунаправленных каналов в однонаправленные разрешается в любом присваивании. Однако обратное не верно.
+Channel violations are detected at compile time. Bidirectional to unidirectional conversions are permitted in any assignment. However, the opposite is not true.
 
-# Буферизованные каналы
+# Buffered channels
 
-Буферизованный канал имеет очередь элементов. Максимальный размер очереди определяется при создании канала с помощью аргумента емкости функции make. Создаем канал емкостью 3
+A buffered pipe has a queue of items. The maximum queue size is determined when the pipe is created using the 'capacity' argument of the 'make' function. Create a channel with a capacity of 3
 ```
 ch = make(chan string, 3)
 ```
-Операция отправления в буферизованный канал вставляет отправляемый элемент
-в конец очереди, а операция получения удаляет первый элемент из очереди. Если канал заполнен, операция отправления блокирует свою go-подпрограмму до тех пор, пока другая go-подпрограмма не освободит место, получив данные из канала. И наоборот, если канал пуст, операция получения блокирует go-подпрограмму до того момента, пока в канал не будет послано значение из другой go-подпрограммы.
+A send operation on a buffered channel inserts the item to be sent to the end of the queue, and the receive operation removes the first item from the queue. If the channel is full, the send operation blocks its go subroutine until another go subroutine frees space by receiving data from the channel. Conversely, if the channel is empty, the receive operation blocks the go subroutine until a value from another go subroutine is sent to the channel.
 
-Узнать размер буфера
+Find out the buffer size
 ```
 cap(ch) //3
 ```
 
-При применении к каналу встроенная функция len возвращает количество элементов, находящихся в настоящее время в буфере. Поскольку в параллельной программе эта информация, скорее всего, окажется устаревшей сразу по получении, ее применение ограничено, но она может оказаться полезной для оптимизации производительности или при отладке.
+When applied to a channel, the built-in 'len' function returns the number of elements currently in the buffer. Since in a parallel program this information is likely to be outdated as soon as it is received, its use is limited, but it can be useful for performance optimization or debugging.
 
-Новички иногда соблазняются простым синтаксисом и используют буферизованные каналы в пределах одной go-подпрограммы в качестве очереди, но это ошибка. Каналы глубоко связаны с планированием go-подпрограмм, и без другой go-подпрограммы, получающей данные из канала, отправитель — да, пожалуй, вся программа в целом — рискует быть навсегда заблокированным. Если все, что вам нужно, — это простая очередь, воспользуйтесь срезом.
+Developers are sometimes tempted by the simple syntax and use buffered pipes within the same go subroutine as a queue, but this is a mistake. Pipes are deeply tied to scheduling go-routines, and without another g-routine receiving data from the pipe, the entire program risks being permanently blocked. If all you want is a simple queue - then use a slice.
 
-# Утечка горутин
+# Leaking goroutines
 
 ```
 func mirroredQuery() string {
@@ -163,14 +148,13 @@ func mirroredQuery() string {
 }
 func request(host string)(res string) { ... }
 ```
-Если бы мы использовали канал без буферизации, две более медленные go-подпрограммы были бы заблокированы при попытках отправить свои ответы в канал, из которого никто никогда не пытался бы считывать данные. Эта ситуация, которая называется утечкой go-подпрограмм, была бы ошибкой. В отличие от переменных, потерянные go-подпрограммы не собираются сборщиком мусора автоматически, поэтому важно гарантировать, что go-подпрограммы должны прекратиться сами, когда они больше не нужны.
+If we were using an unbuffered pipe, the two slower go routines would be blocked trying to send their responses to a pipe from which no one would ever try to read data. This situation, which is called a go subroutine leak, would be a bug. Unlike variables, lost go routines are not automatically collected by the garbage collector, so it is important to ensure that go routines must terminate on their own when they are no longer needed.
 
-# Паттерны
+# Patterns
 
-## Параллельные циклы
+## Parallel loops
 
-Hе существует непосредственного способа дождаться завершения go-подпрограммы, но мы можем изменить внутреннюю go-подпрограмму таким образом, чтобы она сообщала о своем завершении внешней go-подпрограмме, отправляя событие в общий канал.
-
+There is no direct way to wait for the go subroutine to complete, but we can modify the inner go subroutine to signal its completion to the outer go subroutine by sending an event to the common channel.
 ```
 // makeThumbnails3 makes thumbnails of the specified files in parallel.
 func makeThumbnails3(filenames []string) {
@@ -189,16 +173,16 @@ func makeThumbnails3(filenames []string) {
 }
 ```
 
-Будьте внимательны - f надо передавать как параметр функции, а не как внешнюю переменную
+Be careful - 'f' must be passed as a function parameter, not as an external variable
 ```
 for f := range filenames {
     go func() {
-    thumbnail.ImageFile(f) // Примечание: неправильно!
+    thumbnail.ImageFile(f) // wrong!
     // ...
     } ()
 }
 ```
-так как цикл завершится до того, как f будет передано ImageFile. В результате f будет не тем, что мы ожидаем получить.
+since the loop will end before 'f' is passed to ImageFile. As a result, 'f' will not be what we expect.
 
 ```
 func makeThumbnails4(filenames []string) error {
@@ -211,19 +195,19 @@ func makeThumbnails4(filenames []string) error {
     }
     for range filenames {
         if err := <-errorsj err != nil {
-            return err // Примечание: неверно: утечка go-подпрограмм!
+            return err // leak!
         }
     }
     return nil
 }
 ```
-В этой функции содержится тонкая ошибка. Встретив первую ненулевую ошибку, она возвращает ее вызывающей функции, не позволяя go-подпрограмме опустошить канал errors. В результате, каждая оставшаяся работающая go-подпрограмма будет навсегда заблокирована, если попытается отправить значение в этот канал, и никогда не завершится. Эта ситуация, утечка go-подпрограмм (раздел 8.4.4), может привести к остановке всей программы или нехватке памяти. Самым простым решением является использование буферизованного канала с достаточной емкостью, который не будет блокировать рабочие go-подпрограммы при отправке сообщений. Альтернативное решение заключается в создании еще одной go-подпрограммы для опустошения канала, в то время как основная go-подпрограмма без промедления возвращает первую ошибку.
+There is a subtle bug in this function. When it encounters the first non-null error, it returns it to the caller, preventing the go routine from emptying the errors channel. As a result, every remaining running go subroutine will be permanently blocked if it tries to send a value to that pipe, and will never exit. This situation, leak of go routines (chapter 8.4.4), may cause the entire program to stop or run out of memory. The simplest solution is to use a buffered pipe with sufficient capacity, which will not block working go-routines when sending messages. An alternative solution is to create another go subroutine to empty the pipe, while the main go subroutine immediately returns the first error.
 
 # sync.WaitGroup
 
 https://golang.org/pkg/sync/#WaitGroup
 
-Простое средство синхронизации горутин. Вызов Wait будет блокировать выполнение, пока количество вызовов Done() не будет равно добавленным в группу горутинам посредством Add(1).
+A simple goroutine sync tool. The Wait() call will block until the number of Done() calls equals the goroutines added to the group by Add(1).
 
 ```
 func main(){
@@ -257,7 +241,7 @@ func makeThumbnails6(filenames <-chan int) int {
 	return total
 } 
 ```
-вывод
+output
 ```
 sending 0
 sending 2
@@ -273,4 +257,4 @@ no more elements
 RES 3
 ```
 
-Конец статьи.
+The end of the article.
