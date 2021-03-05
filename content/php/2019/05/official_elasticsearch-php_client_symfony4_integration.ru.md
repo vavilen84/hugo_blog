@@ -1,6 +1,7 @@
 ---
 title: "Symfony + Elasticsearch (official php-client)"
 publishdate: "2019-05-15"
+summary: "php"
 categories:
     - "php"
 tags:
@@ -28,13 +29,13 @@ composer update
 ```
 
 ## Добавляем сервис в конфиг
-```yaml
+```
 services:
   App\Service\ElasticSearchService:
 ```
 
 ## Добавляем сервис
-```php
+```
 <?php
 
 namespace App\Service;
@@ -143,7 +144,7 @@ class ElasticSearchService
 ```
 
 ## Добавляем сущность
-```php
+```
 <?php
 
 namespace App\Entity;
@@ -178,7 +179,7 @@ class Post
 ```
 
 ##  Контроллер
-```php
+```
 <?php
 
 namespace App\Controller;

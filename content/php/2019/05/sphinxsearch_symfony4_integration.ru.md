@@ -1,6 +1,7 @@
 ---
 title: "Sphinxsearch / Symfony / Docker / Postgres / KnpPaginatorBundle"
 publishdate: "2019-05-15"
+summary: "php"
 categories:
   - "php"
 tags:
@@ -32,7 +33,7 @@ SPHINX_TYPE=pgsql
 ```
 
 ## docker-compose.yml
-```yaml
+```
 version: '3'
 services:
   php:

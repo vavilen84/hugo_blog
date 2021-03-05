@@ -1,6 +1,7 @@
 ---
 title: "Symfony + FOSElasticaBundle + Docker"
 publishdate: "2019-05-15"
+summary: "php"
 categories:
     - "php"
 tags:
@@ -29,7 +30,7 @@ composer update
 ```
 
 ### 3. добавляем бандл в bundles.php
-```php
+```
 <?php
 
 return [
@@ -38,7 +39,7 @@ return [
 ```
 
 ### 4. docker-compose.yml
-```yaml
+```
 version: '3'
 services:
   elasticsearch:
@@ -74,7 +75,7 @@ networks:
   local:
 ```
 ### 5. добавляем сущность Post
-```php
+```
 <?php
 
 namespace App\Entity;
@@ -109,7 +110,7 @@ class Post
 ```
 
 ### 6. fos_elastica.yaml
-```yaml
+```
 # Read the documentation: https://github.com/FriendsOfSymfony/FOSElasticaBundle/blob/master/Resources/doc/setup.md
 fos_elastica:
     clients:
@@ -136,7 +137,7 @@ services:
 ```
 
 ### 7. App\Service\FOSElasticSearchService.php
-```php
+```
 <?php
 
 namespace App\Service;
@@ -202,7 +203,7 @@ class FOSElasticSearchService
 ```
 
 ### 8. Контроллер
-```php
+```
 <?php
 
 namespace App\Controller;

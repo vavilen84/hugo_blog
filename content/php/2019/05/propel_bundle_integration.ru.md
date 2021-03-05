@@ -1,6 +1,7 @@
 ---
 title: "Symfony + PropelBundle"
 publishdate: "2019-05-15"
+summary: "php"
 categories:
   - "php"
 tags:

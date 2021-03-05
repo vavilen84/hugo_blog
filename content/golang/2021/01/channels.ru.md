@@ -2,6 +2,7 @@
 title: "Каналы"
 publishdate: "2021-01-20"
 lastmod: "2021-01-20"
+summary: "go"
 categories:
   - "golang"
 tags:

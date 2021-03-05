@@ -1,10 +1,8 @@
-$(document).ready(function () {
-    var pl = $('#pl').text();
-    initHljs(pl);
-});
-
-function initHljs(pl) {
-    console.log(hljs);
+document.addEventListener("DOMContentLoaded", function(event) {
+    var pl = document.getElementById('pl').textContent;
     hljs.configure({tabReplace: '    ', languages: [pl]});
     hljs.initHighlightingOnLoad();
-}
+});
+
+
+

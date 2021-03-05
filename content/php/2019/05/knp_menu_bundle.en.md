@@ -1,6 +1,7 @@
 ---
 title: "Symfony + KnpMenuBundle"
 publishdate: "2019-05-15"
+summary: "php"
 categories:
     - "php"
 tags:
@@ -17,12 +18,12 @@ $ composer require knplabs/knp-menu-bundle "^2.0"
 ```
 
 add bundle to bundles.php
-```php
+```
 Knp\Bundle\MenuBundle\KnpMenuBundle::class => ['all' => true],
 ```
 
 create file app/config/packages/knp_menu.yaml and add content
-```yaml
+```
 knp_menu:
     # use "twig: false" to disable the Twig extension and the TwigRenderer
     twig:
@@ -35,7 +36,7 @@ knp_menu:
 ```
 
 add to app/config/services.yaml
-```yaml
+```
 services:
     # ... other services defenitions ...
     app.menu_builder:
@@ -47,7 +48,7 @@ services:
 ```
 
 create file App\Services\KnpMenuBuilderService.php
-```php
+```
 <?php
 
 namespace App\Service;

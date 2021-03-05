@@ -122,3 +122,11 @@ Original highlight.js style (c) Ivan Sagalaev <maniac@softwaremaniacs.org>
 .hljs-string{
     color: yellowgreen;
 }
+
+.hljs.php .hljs-title {
+    color: #cecece;
+}
+
+.hljs.php .hljs-variable {
+    color: mediumpurple;
+}
