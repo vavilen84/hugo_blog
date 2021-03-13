@@ -6,6 +6,9 @@
 <script src="/js/initHljs.js"></script>
 <div class="relative">
     <h1>{{.Title}}</h1>
+    <div class="center">
+        <img alt="" src="{{ .Params.image }}" />
+    </div>
     <div class="post">
         <div class="posted-on">Posted on {{ .PublishDate.Format "January 2, 2006" }}</div>
         <div class="posted-on">Updated on {{ .Lastmod.Format "January 2, 2006" }}</div>
