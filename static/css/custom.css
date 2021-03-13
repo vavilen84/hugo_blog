@@ -344,6 +344,11 @@ a {
     word-break: break-all;
 }
 
+/* temporary hide left sidebar */
+.left-sidebar {
+    display: none !important;
+}
+
 @media (max-width: 968px) {
     .holder {
         width: auto;
