@@ -318,11 +318,73 @@ body {
 }
 
 .wrapper ul.home-page-tags {
-    margin:0;
+    margin: 0;
     padding: 0;
 }
 
 
-.hidden{
+.hidden {
     display: none;
+}
+
+#nav-search-lang-block,
+.lang-nav {
+    float: right;
+}
+
+.nav,
+.search-block,
+.lang-block,
+#searchbox,
+.algolia-logo-wrap {
+    float: left;
+}
+
+a {
+    word-break: break-all;
+}
+
+@media (max-width: 968px) {
+    .holder {
+        width: auto;
+    }
+
+    .algolia-logo {
+        display: none;
+    }
+
+    #topBtn,
+    #downBtn {
+        display: none !important;
+    }
+
+    .nav,
+    #nav-search-lang-block,
+    .search-block,
+    .lang-block,
+    .lang-nav {
+        float: none;
+    }
+
+    #nav-search-lang-block {
+        margin-top: 20px;
+    }
+
+    .nav {
+        margin-left: 5px;
+    }
+
+    .lang-block {
+        position: relative;
+        top: -28px;
+        left: -14px;
+    }
+
+    .left-sidebar {
+        display: none !important;
+    }
+
+    .holder {
+        padding: 10px;
+    }
 }

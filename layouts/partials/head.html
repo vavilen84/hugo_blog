@@ -58,18 +58,18 @@
     </a>
     <div class="content">
         <div class="holder nav-block">
-            <ul class="nav fl-left">
+            <ul class="nav">
                 <li>
                     <a class="localized" href="{{ .Site.BaseURL }}">{{ .Site.Title }}</a>
                     <a class=" localized" href="{{ .Site.BaseURL }}categories/golang/">Golang</a>
                     <a class="localized" href="{{ .Site.BaseURL }}categories/php/">PHP</a>
                 </li>
             </ul>
-            <div class="fl-right">
-                <div class="fl-left">
+            <div id="nav-search-lang-block">
+                <div class="search-block">
                     {{ partial "search.html" . }}
                 </div>
-                <div class="fl-left">
+                <div class="lang-block">
                     <ul class="lang-nav fl-right">
                         <li>
                             <a class="lang-link" id="en-link" href="">EN</a>

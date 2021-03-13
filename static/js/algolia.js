@@ -47,6 +47,7 @@ function initAlgoliaClient() {
         }),
         instantsearch.widgets.searchBox({
             container: '#searchbox',
+            placeholder: "Algolia search ..."
         }),
         instantsearch.widgets.hits({
             container: '#hits',
