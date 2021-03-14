@@ -7,7 +7,7 @@
 <div class="relative">
     <h1>{{.Title}}</h1>
     <div class="center">
-        <img alt="" src="{{ .Params.image }}" />
+        <img alt="" src="{{ .Site.BaseURL }}{{ .Params.image }}" />
     </div>
     <div class="post">
         <div class="posted-on">Posted on {{ .PublishDate.Format "January 2, 2006" }}</div>
