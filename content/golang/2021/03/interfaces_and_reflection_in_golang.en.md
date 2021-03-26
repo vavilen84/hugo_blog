@@ -1,5 +1,5 @@
 ---
-title: "Interfaces & reflection in Golang"
+title: "Interfaces and reflection in Golang"
 publishdate: "2021-03-26"
 lastmod: "2021-03-26"
 summary: "go"
