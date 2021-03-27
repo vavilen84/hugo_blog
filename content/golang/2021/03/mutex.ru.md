@@ -5,7 +5,7 @@ lastmod: "2021-03-27"
 summary: "go"
 categories:
 - "golang"
-  tags:
+tags:
 - "go mutex"
 - "book notes"
 ---

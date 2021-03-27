@@ -1,10 +1,6 @@
 $(document).ready(async function () {
     var data = await getIndex();
-    var counter = 0;
     for (i in data) {
-        if (counter >= 10) {
-            break;
-        }
         if ((data[i].title !== "") && (data[i].content !== "") && (data[i].tags.length > 0)) {
             var link = $('<a></a>')
                 .html(data[i].category[0].toUpperCase() + ": " + data[i].title)
@@ -21,9 +17,7 @@ $(document).ready(async function () {
             $('<li></li>')
                 .html(html)
                 .appendTo($('#recent-articles-list'));
-            counter++;
         }
-
     }
 });
 
