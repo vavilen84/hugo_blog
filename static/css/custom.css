@@ -328,16 +328,19 @@ body {
 }
 
 #nav-search-lang-block,
+.search-block,
 .lang-nav {
     float: right;
 }
 
 .nav,
-.search-block,
 .lang-block,
-#searchbox,
-.algolia-logo-wrap {
+#searchbox{
     float: left;
+}
+
+.searchbox {
+    margin-top: -38px;
 }
 
 a {

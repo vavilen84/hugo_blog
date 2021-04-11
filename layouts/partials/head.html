@@ -61,15 +61,13 @@
         <div class="holder nav-block">
             <ul class="nav">
                 <li>
-                    <a class="localized" href="{{ .Site.BaseURL }}">{{ .Site.Title }}</a>
+                    <a class="localized" href="{{ .Site.BaseURL }}">Home</a>
                     <a class=" localized" href="{{ .Site.BaseURL }}categories/golang/">Golang</a>
                     <a class="localized" href="{{ .Site.BaseURL }}categories/php/">PHP</a>
+                    <a class="localized" href="{{ .Site.BaseURL }}categories/algo/">Аlgorithms & data structures</a>
                 </li>
             </ul>
             <div id="nav-search-lang-block">
-                <div class="search-block">
-                    {{ partial "search.html" . }}
-                </div>
                 <div class="lang-block">
                     <ul class="lang-nav fl-right">
                         <li>
@@ -81,6 +79,10 @@
                     </ul>
                 </div>
                 <div class="clear"></div>
+            </div>
+            <div class="clear"></div>
+            <div class="search-block">
+                {{ partial "search.html" . }}
             </div>
             <div class="clear"></div>
         </div>

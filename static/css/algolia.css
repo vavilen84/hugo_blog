@@ -52,6 +52,7 @@
 
 #searchbox {
     margin-bottom: 2rem;
+    margin-top:15px;
 }
 
 #pagination {
@@ -125,7 +126,7 @@
 }
 
 .algolia-logo-wrap{
-    margin-left:25px;
+    margin-left:10px;
 }
 
 .search-result-wrap{
@@ -133,7 +134,7 @@
     background: white;
     z-index: 10;
     width:510px;
-    top:75px;
+    top:131px;
 }
 
 .ais-Hits-item{
