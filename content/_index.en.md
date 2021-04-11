@@ -2,6 +2,6 @@
 title: "Home"
 ---
 
-# Blog about Golang / PHP / Javascript
+# Blog about programming
 
 {{<home_page_recent_articles >}}
