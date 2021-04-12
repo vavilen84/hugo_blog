@@ -336,7 +336,7 @@ body {
 
 .nav,
 .lang-block,
-#searchbox{
+#searchbox {
     float: left;
 }
 
@@ -356,10 +356,21 @@ a {
 .center {
     text-align: center;
 }
+
 .post img {
     max-width: 100% !important;
 }
+
+.search-result-wrap {
+    right: 0;
+}
+
 @media (max-width: 968px) {
+    .search-result-wrap {
+        left: 0;
+        right: auto;
+    }
+
     .holder {
         width: auto;
     }
@@ -390,7 +401,7 @@ a {
     }
 
     #searchbox {
-        margin-top:35px !important;
+        margin-top: 35px !important;
     }
 
     .lang-block {
@@ -411,7 +422,11 @@ a {
 @media (max-width: 635px) {
     #searchbox {
         visibility: hidden;
-        margin:0;
+        margin: 0;
         height: 0;
+    }
+
+    .search-result-wrap {
+        display: none;
     }
 }

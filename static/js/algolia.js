@@ -3,8 +3,6 @@ $(document).ready(function () {
 
     //hideSearchResults();
     onSearchInputKeyup();
-
-    $('.search-result-wrap').css('left', $('.ais-SearchBox-input').offset().left);
 });
 
 function hideSearchResults() {
