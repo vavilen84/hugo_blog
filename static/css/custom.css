@@ -1,6 +1,7 @@
 * {
     margin: 0;
     padding: 0;
+    word-break: break-all;
 }
 
 html,
@@ -355,7 +356,9 @@ a {
 .center {
     text-align: center;
 }
-
+.post img {
+    max-width: 100% !important;
+}
 @media (max-width: 968px) {
     .holder {
         width: auto;
@@ -386,9 +389,13 @@ a {
         margin-left: 5px;
     }
 
+    #searchbox {
+        margin-top:35px !important;
+    }
+
     .lang-block {
         position: relative;
-        top: -28px;
+        top: -10px;
         left: -14px;
     }
 
@@ -398,5 +405,13 @@ a {
 
     .holder {
         padding: 10px;
+    }
+}
+
+@media (max-width: 635px) {
+    #searchbox {
+        visibility: hidden;
+        margin:0;
+        height: 0;
     }
 }
