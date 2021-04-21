@@ -182,7 +182,7 @@ func algo(n []int) int {
 
 Пример ниже имеет сложность O(1 + (N * 1) + (N * 1) + 1 + (N * (N + 1))) = O(N + N + N{{< exp >}}2{{< /exp >}}) или просто  O(N{{< exp >}}2{{< /exp >}})
 ```
-func algO(N []int) int {
+func algo(n []int) int {
     res := 0 // 1
     for k := range n { N
         res += n[k] // 1
@@ -410,7 +410,7 @@ func foo(n int) {
     if n == 1 {
         return
     }
-    return foo(n-1) // раз
+    return foo(n-1)
 }
 ```
 

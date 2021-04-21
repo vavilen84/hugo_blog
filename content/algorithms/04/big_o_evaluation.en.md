@@ -134,7 +134,7 @@ for keyA := range a { // N
 }
 ```
 
-## Logarithmic сложность
+## Logarithmic complexity
 ```
 func iterate(a []int) (res int) {
 	for {
@@ -152,7 +152,7 @@ binary search algorithm.
 
 ## Time complexity evaluation
 
-Предположим, алгоритм имеет два цикла и одну константную по времени операцию
+Suppose the algorithm has two cycles and one time-constant operation
 ```
 func algo(n []int) int {
     res := 0
@@ -166,11 +166,11 @@ func algo(n []int) int {
     return res
 }
 ```
-В результате мы имеем O((N * 1) + (N * 1) + 1) = O(N + N) или просто O(N).
+so, we have O((N * 1) + (N * 1) + 1) = O(N + N) or just O(N).
 
-Пример ниже имеет сложность O(1 + (N * 1) + (N * 1) + 1 + (N * (N + 1))) = O(N + N + N{{< exp >}}2{{< /exp >}}) или просто  O(N{{< exp >}}2{{< /exp >}})
+Next example has complexity O(1 + (N * 1) + (N * 1) + 1 + (N * (N + 1))) = O(N + N + N{{< exp >}}2{{< /exp >}}) or just  O(N{{< exp >}}2{{< /exp >}})
 ```
-func algO(N []int) int {
+func algo(n []int) int {
     res := 0 // 1
     for k := range n { N
         res += n[k] // 1
@@ -188,10 +188,10 @@ func algO(N []int) int {
 }
 ```
 
-## Вычисление пространственной сложности
+## Space complexity evaluation
 
-Алгоритм поиска максимума будет иметь константную O(1) пространственную сложность, так как расход памяти всегда будет
-детерминирован (память выделяется только один раз):
+Next algorithm has constant O(1) space complexity, since the memory consumption will always be
+deterministic (memory is allocated only once):
 ```
 func max(n []int) int {
 	res := math.MinInt64 // 1
@@ -204,8 +204,8 @@ func max(n []int) int {
 }
 ```
 
-Алгоритм слияния срезов будет иметь сложность O(A + B), т.к. для результирующего среза будет
-выделен объем памяти пропорциональный длинне входных срезов:
+Next algorithm has O(A + B) complexity, because for the resulting slice will be
+allocated memory space proportional to the length of the input slices:
 ```
 func merge(a, b []int) []int {
 	res := make([]int, len(a)+len(b))
@@ -219,11 +219,11 @@ func merge(a, b []int) []int {
 }
 ```
 
-## Другие примеры вычисления сложности
+## Other examples 
 
-### Циклы
+### Loops
 
-Дано: функция содержит цикл и вызов другой функции:
+Suppose, the function contains a loop and to another function call:
 ```
 func sumSequence(n int) int {
 	res := 0 // 1
@@ -237,9 +237,9 @@ func sum(a, b int) int {
 	return a + b // 1
 }
 ```
-Временная сложность: O(1 + (N * 1)) = O(N); пространственная сложность - константная O(1).
+so, time complexity is O(1 + (N * 1)) = O(N); space complexity is O(1).
 
-Давайте сравним две функции
+Let`s compare two functions
 ```
 func minMax(n []int) (min, max int) {
 	min = math.MaxInt64 
@@ -255,7 +255,7 @@ func minMax(n []int) (min, max int) {
 	return
 }
 ```
-сложность O(N * (1 + 1)) или просто O(N)
+complexity is O(N * (1 + 1)) or just O(N)
 ```
 func minMax(n []int) (min, max int) {
 	min = math.MaxInt64
@@ -273,39 +273,37 @@ func minMax(n []int) (min, max int) {
 	return
 }
 ```
-сложность O((N * (1 * 1)) + (N * (1 * 1))) или просто O(N). Пространственная сложность - константная.
+complexity is O((N * (1 * 1)) + (N * (1 * 1))) or just O(N). Space complexity is constant.
 
-Рассмотрим данные вложенные циклы
+Consider next nested loops
 ```
-for i := 0; i < N; i++ { // N
-    for j := 0; j < N; j++ { // N
+for i := 0; i < n; i++ { // N
+    for j := 0; j < n; j++ { // N
         foo()
     }
 }
 ```
 ```
-for i := 0; i < N; i++ { // N
-    for j := i; j < N; j++ { // N
+for i := 0; i < n; i++ { // N
+    for j := i; j < n; j++ { // N
         foo()
     }
 }
 ```
-из иллюстрации ниже мы видим, что во втором примере вложенный цикл уменьшается ровно на половину
-![](/posts/big_o_nested_loops.png)
-соответственно, для второго примера сложность будет O(N{{< exp >}}2{{< /exp >}}/2) или просто квадратичная O(N{{< exp >}}2{{< /exp >}})
+if n = 4, then first loop has O(N{{< exp >}}2{{< /exp >}}) and the second O(N{{< exp >}}2{{< /exp >}}/2) or just O(N{{< exp >}}2{{< /exp >}}).
 
-Пример ниже не будет иметь кубическую сложность, т.к. сложность второго вложенного цикла - константа "100"
+Next example doesnt have cubic complexity, because the complexity of the second nested loop is constant 100:
 ```
 for i := 0; i < N; i++ { // N
     for j := 0; j < N; j++ { // N
-        for c := 0; с < 100; j++ { // константа 100
+        for c := 0; с < 100; j++ { // constant 100
             foo()
         }
     }
 }
 ```
 
-Пример ниже будет иметь сложность O(A*B), т.к. a и b различны
+Next example complexity is O(A*B), because a and b are different
 ```
 func foo(a, b []int) {
     for i := 0; i < a; i++ { // A  
@@ -316,7 +314,7 @@ func foo(a, b []int) {
 }
 ```
 
-Пример ниже будет иметь сложность O(N/2) или просто O(N)
+Next example complexity is O(N/2) or just O(N)
 ```
 func foo(a []int){
     for i := 0; i < (len(a)/2); i++ {
@@ -325,9 +323,9 @@ func foo(a []int){
 }
 ```
 
-### Строки
+### Strings
 
-Алгоритм сравнения строк посимвольно будет иметь линейную временную сложность:
+Next strings compare algorithm complexity is linear:
 ```
 
 func compareStrings(s1, s2 string) int {
@@ -349,7 +347,7 @@ func compareStrings(s1, s2 string) int {
 }
 ```
 
-Алгоритм конкатенации строк будет иметь временную и пространственную сложности O(N + K)
+Strings concatenation algorithm has O(N + K) time and space complexities:
 ```
 func concatenateString(s1, s2 string) string {
 	result := make([]byte, len(s1)+len(s2))
@@ -363,7 +361,7 @@ func concatenateString(s1, s2 string) string {
 }
 ```
 
-Получение подстроки будет иметь временную и пространственную сложности O(end-start) или O(N-K)
+Getting substring  algorithm has  O(end-start) or O(N-K)  time and space complexities:
 ```
 func subString(input string, start, end int) string {
 	result := make([]byte, end-start)
@@ -374,7 +372,7 @@ func subString(input string, start, end int) string {
 }
 ```
 
-Давайте разберем следующий пример: дан массив строк, в нем надо отсортировать вначале сами строки, а, затем, и массив целиком
+Suppose we have array of strings and we need to sort strings firstly and then the whole array:
 ```
 func sortStrings(a []string) {
     for k := range a { // N 
@@ -383,26 +381,24 @@ func sortStrings(a []string) {
     sortArr(a) // L * N * log N
 }
 ```
-цикл по диапазону 'a' имеет линейную зависимость O(N) от количества элементов в срезе 'a'. Предположим, что в качестве 
-алгоритма сортировки мы используем сортировку слиянием, которая имеет сложность O(L log L). Следовательно, часть нашего 
-алгоритма, которая сортируем строки в массиве будет иметь сложность O(N * L log L). Если мы используем сортировку 
-слиянием и для сортировки всего среза целиком, то сложность будет O(L * N log N); L в данном случае - линейная 
-зависимость от длинны строки для посимвольного сравнения. Итоговая сложность будет: 
-O(N * L * log L + L * N * log N) = O(L * N * (log L + log N))
+range loop 'a' has linear complexity O(N) depending on 'a' length. Suppose we use merge sort which complexity is O(L log L). 
+So, the part of algorithm which sorts strings complexity should be O(N * L log L). If we use merge sort for the whole 
+array sorting the complexity should be O(L * N log N); L describes string length used in symbol by symbol comparison.
+So, result complexity is O(N * L * log L + L * N * log N) = O(L * N * (log L + log N))
 
-### Рекурсия
+### Recursion
 
-Для одного рекурсивного вызова сложность - O(N), т.к. foo будет вызвана N раз
+One recursion call complexity is linear - O(N)
 ```
 func foo(n int) {
     if n == 1 {
         return
     }
-    return foo(n-1) // раз
+    return foo(n-1)
 }
 ```
 
-Для двух рекурсивных вызовов сложность экспоненциальная - O(2{{< exp >}}n{{< /exp >}}):
+Two recursion calls complexity is exponential - O(2{{< exp >}}n{{< /exp >}}):
 ```
 func foo(n int) {
     if n == 1 { // 1
@@ -412,4 +408,4 @@ func foo(n int) {
 }
 ```
 
-Конец статьи!
+The end of the article!
