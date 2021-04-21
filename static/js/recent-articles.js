@@ -3,7 +3,7 @@ $(document).ready(async function () {
     for (i in data) {
         if ((data[i].title !== "") && (data[i].content !== "") && (data[i].tags.length > 0)) {
             var link = $('<a></a>')
-                .html(data[i].category[0].toUpperCase() + ": " + data[i].title)
+                .html(data[i].title)
                 .attr('href', data[i].uri);
             var options = { year: 'numeric', month: 'long', day: 'numeric' };
             var locale = currentLang === "en" ? "en-US" : "ru-RU";
