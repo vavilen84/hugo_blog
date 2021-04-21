@@ -6,7 +6,7 @@ summary: "go"
 description: "Эта статья основана на книге Aditya Bhargava 'Grokking Algorithms'. Cтатья может быть полезна при подготовке к собеседованию."
 image: "posts/dynamical_programming_subsequent.png"
 categories:
-  - "golang"
+  - "algorithms"
 tags:
   - "algorithms"
   - "book notes"

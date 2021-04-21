@@ -1,7 +1,6 @@
 * {
     margin: 0;
     padding: 0;
-    word-break: break-all;
 }
 
 html,
@@ -196,6 +195,7 @@ body {
 
 .underline {
     color: #222;
+    text-decoration: underline;
 }
 
 .left-sidebar .underline {
