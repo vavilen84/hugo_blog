@@ -116,6 +116,38 @@ You're boring; I'm leaving.
 
 Но когда мы используем буферизованные каналы - буферизация убирает синхронизацию.
 
+примечание! если мы запустим горутины внутри суб-горутины - она не остановит вложенные
+```
+func main(){
+	fmt.Println("start")
+	go func(){
+		fmt.Println("gmain start")
+		go func(){
+			time.Sleep(1*time.Second)
+			fmt.Println("g1")
+		}()
+		go func(){
+			time.Sleep(1*time.Second)
+			fmt.Println("g2")
+		}()
+		fmt.Println("gmain end")
+	}()
+	fmt.Println("sleep")
+	time.Sleep(5*time.Second)
+	fmt.Println("the end")
+}
+```
+вывод
+```
+start
+sleep
+gmain start
+gmain end
+g2
+g1
+the end
+```
+
 # Подход Go
 
 Не коммуникацируйте посредством разделения памяти - разделяйте память через коммуникации. Другими словами - не используйте переменные с мьютексами, передавайте структуры данных по каналам.

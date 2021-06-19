@@ -210,7 +210,7 @@ func makeThumbnails4(filenames []string) error {
         }(f)
     }
     for range filenames {
-        if err := <-errorsj err != nil {
+        if err := <-errors; err != nil {
             return err // Примечание: неверно: утечка go-подпрограмм!
         }
     }

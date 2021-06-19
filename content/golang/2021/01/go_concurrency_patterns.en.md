@@ -116,6 +116,38 @@ similarity, when the boring function executes c <- value, it waits for a receive
 
 But, when we use buffered channels - buffering removes synchronization. 
 
+note! if we run goroutines inside a sub-goroutine, it won't stop nested
+```
+func main(){
+	fmt.Println("start")
+	go func(){
+		fmt.Println("gmain start")
+		go func(){
+			time.Sleep(1*time.Second)
+			fmt.Println("g1")
+		}()
+		go func(){
+			time.Sleep(1*time.Second)
+			fmt.Println("g2")
+		}()
+		fmt.Println("gmain end")
+	}()
+	fmt.Println("sleep")
+	time.Sleep(5*time.Second)
+	fmt.Println("the end")
+}
+```
+output
+```
+start
+sleep
+gmain start
+gmain end
+g2
+g1
+the end
+```
+
 # The Go approach
 
 Don't communicate by sharing memory, share memory by communicating. In other words - don't use data variables with mutexes, pass data structures via channels.
