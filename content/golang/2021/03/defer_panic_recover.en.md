@@ -210,4 +210,143 @@ main.main()
 exit status 2
 ```
 
-The end of the article.
+# Other recover examples
+
+```
+func b(){
+	panic(100)
+}
+
+func a(){
+	defer func() {
+		if r := recover(); r != nil {
+			fmt.Println("Recovered in a", r)
+		}
+	}()
+	b()
+}
+
+func main(){
+	a()
+	fmt.Println("main")
+}
+```
+output
+```
+Recovered in a 100
+main
+```
+
+put recover in the panic function
+```
+func a(){
+	defer func() {
+		if r := recover(); r != nil {
+			fmt.Println("Recovered in a", r)
+		}
+	}()
+	panic(100)
+}
+
+func main(){
+	a()
+	fmt.Println("main")
+}
+```
+output
+```
+Recovered in a 100
+main
+```
+
+put recover in the main function
+```
+func c(){
+	panic(100)
+}
+
+func main(){
+	defer func() {
+		if r := recover(); r != nil {
+			fmt.Println("Recovered in main", r)
+		}
+	}()
+	c()
+	fmt.Println("main")
+}
+```
+output
+```
+Recovered in main 100
+```
+
+be careful wth goroutines
+```
+func b(){
+	panic(100)
+}
+
+func a(){
+	defer func() {
+		if r := recover(); r != nil {
+			fmt.Println("Recovered in a", r)
+		}
+	}()
+	go b()
+}
+
+func main(){
+	a()
+	for i := 3; i > 0; i-- {
+		fmt.Println("main:", strconv.Itoa(i))
+		time.Sleep(1 * time.Second)
+	}
+}
+```
+output
+```
+main: 3
+panic: 100
+
+goroutine 18 [running]:
+main.b()
+...
+```
+
+we should put recover in the panic goroutine
+```
+func b(){
+	defer func() {
+		if r := recover(); r != nil {
+			fmt.Println("Recovered in b", r)
+		}
+	}()
+	panic(100)
+}
+
+func a(){
+	defer func() {
+		if r := recover(); r != nil {
+			fmt.Println("Recovered in a", r)
+		}
+	}()
+	go b()
+}
+
+func main(){
+	a()
+	for i := 3; i > 0; i-- {
+		fmt.Println("main:", strconv.Itoa(i))
+		time.Sleep(1 * time.Second)
+	}
+}
+```
+output
+```
+main: 3
+Recovered in b 100
+main: 2
+main: 1
+```
+
+The end of the article!

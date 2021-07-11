@@ -1,7 +1,7 @@
 ---
 title: "Defer, Panic и Recover"
 publishdate: "2021-03-26"
-lastmod: "2021-03-26"
+lastmod: "2021-07-11"
 summary: "go"
 categories:
 - "golang"
@@ -208,6 +208,144 @@ main.f()
 main.main()
         /var/www/app/tmp/main.go:6 +0x22
 exit status 2
+```
+# Другие примеры recover
+
+```
+func b(){
+	panic(100)
+}
+
+func a(){
+	defer func() {
+		if r := recover(); r != nil {
+			fmt.Println("Recovered in a", r)
+		}
+	}()
+	b()
+}
+
+func main(){
+	a()
+	fmt.Println("main")
+}
+```
+вывод
+```
+Recovered in a 100
+main
+```
+
+помещаем recover в паникующую функцию
+```
+func a(){
+	defer func() {
+		if r := recover(); r != nil {
+			fmt.Println("Recovered in a", r)
+		}
+	}()
+	panic(100)
+}
+
+func main(){
+	a()
+	fmt.Println("main")
+}
+```
+вывод
+```
+Recovered in a 100
+main
+```
+
+помещаем recover в main
+```
+func c(){
+	panic(100)
+}
+
+func main(){
+	defer func() {
+		if r := recover(); r != nil {
+			fmt.Println("Recovered in main", r)
+		}
+	}()
+	c()
+	fmt.Println("main")
+}
+```
+вывод
+```
+Recovered in main 100
+```
+
+будьте осторожны с горутинами
+```
+func b(){
+	panic(100)
+}
+
+func a(){
+	defer func() {
+		if r := recover(); r != nil {
+			fmt.Println("Recovered in a", r)
+		}
+	}()
+	go b()
+}
+
+func main(){
+	a()
+	for i := 3; i > 0; i-- {
+		fmt.Println("main:", strconv.Itoa(i))
+		time.Sleep(1 * time.Second)
+	}
+}
+```
+вывод
+```
+main: 3
+panic: 100
+
+goroutine 18 [running]:
+main.b()
+...
+```
+
+надо помещать recover в горутину
+```
+func b(){
+	defer func() {
+		if r := recover(); r != nil {
+			fmt.Println("Recovered in b", r)
+		}
+	}()
+	panic(100)
+}
+
+func a(){
+	defer func() {
+		if r := recover(); r != nil {
+			fmt.Println("Recovered in a", r)
+		}
+	}()
+	go b()
+}
+
+func main(){
+	a()
+	for i := 3; i > 0; i-- {
+		fmt.Println("main:", strconv.Itoa(i))
+		time.Sleep(1 * time.Second)
+	}
+}
+```
+вывод
+```
+main: 3
+Recovered in b 100
+main: 2
+main: 1
 ```
 
 Конец статьи.
