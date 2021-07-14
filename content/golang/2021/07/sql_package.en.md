@@ -154,10 +154,6 @@ func main(){
 ```
 output
 ```
-true
-2021/07/12 16:16:21 fatal error:context deadline exceeded
-exit status 1
-vavilen@vavilen-B550M-AORUS-ELITE:~/www/hugo_blog/tmp$ go run db.go 
 context deadline exceeded
 panic: runtime error: invalid memory address or nil pointer dereference
         panic: runtime error: invalid memory address or nil pointer dereference
