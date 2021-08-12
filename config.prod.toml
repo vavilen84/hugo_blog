@@ -1,5 +1,6 @@
 baseURL = "https://vavilen84.com/"
 canonifyURLs = true
+env = "prod"
 
 defaultContentLanguage = "en"
 
