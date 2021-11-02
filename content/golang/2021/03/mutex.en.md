@@ -16,9 +16,15 @@ Ralph Caraveo III 'Dancing with Go’s Mutexes' https://medium.com/hackernoon/da
 
 # Mutual exclusion pattern
 
+A data race occurs when two go goroutines simultaneously access the same variable and at least one of the calls
+is a record.
+
+We use a channel with a capacity of 1 in order to ensure that at the same time to the shared
+only one go subroutine can access a variable.
+
 ```
 var (
-    sema = make(chan s truct{},l) // guarding balance
+    sema = make(chan s truct{},1) // guarding balance
     balance int
 )
 
