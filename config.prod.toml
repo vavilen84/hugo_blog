@@ -1,6 +1,5 @@
 baseURL = "https://vavilen84.com/"
 canonifyURLs = true
-env = "prod"
 
 defaultContentLanguage = "en"
 
@@ -29,3 +28,4 @@ home = ["HTML", "JSON"]
 
 [Params]
 IndexName = "blog_production_"
+env = "prod"
