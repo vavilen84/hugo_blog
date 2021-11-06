@@ -20,6 +20,8 @@
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"
             integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
             crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.bundle.min.js"></script>
+
     <script src="/js/lang-switcher.js{{ if $assetBusting }}?timestamp={{ now.Unix }}{{ end }}"></script>
     <script src="/js/link-localize.js{{ if $assetBusting }}?timestamp={{ now.Unix }}{{ end }}"></script>
     <script src="/js/on-window-scroll.js{{ if $assetBusting }}?timestamp={{ now.Unix }}{{ end }}"></script>
@@ -57,28 +59,46 @@
     </a>
     <div class="content">
         <div class="holder nav-block">
+            <div>
+                <div id="logo" class="fl-left">
+                    <a class="localized underline logo" href="{{ .Site.BaseURL }}">
+                        <img alt="" src="/images/logo.png"/>
+                    </a>
+                </div>
+                <div id="about" class="fl-left">
+                    <h1>
+                        {{ if eq .Site.Language.Lang "en" }}
+                        Blog about WEB programming & development
+                        {{ else }}
+                        Блог о WEB программировании и разработке
+                        {{ end }}
+                    </h1>
+                </div>
+                <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        {{ if eq .Site.Language.Lang "en" }}
+                        Language
+                        {{ else }}
+                        Язык
+                        {{ end }}
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item lang-link" id="en-link" href="#">EN</a>
+                        <a class="dropdown-item lang-link" id="ru-link" href="#">RU</a>
+                    </div>
+                </div>
+                <div class="clear"></div>
+            </div>
+            <div class="border"></div>
             <ul class="nav">
                 <li>
-                    <a class="localized underline" href="{{ .Site.BaseURL }}">Home</a>
+
+                    <a class=" localized underline" href="{{ .Site.BaseURL }}categories/javsacript/">Javascript</a>
                     <a class=" localized underline" href="{{ .Site.BaseURL }}categories/golang/">Golang</a>
                     <a class="localized underline" href="{{ .Site.BaseURL }}categories/php/">PHP</a>
                     <a class="localized underline" href="{{ .Site.BaseURL }}categories/algorithms/">Algorithms & data structures</a>
                 </li>
             </ul>
-            <div id="nav-search-lang-block">
-                <div class="lang-block">
-                    <ul class="lang-nav fl-right">
-                        <li>
-                            <a class="lang-link" id="en-link" href="">EN</a>
-                        </li>
-                        <li>
-                            <a class="lang-link" id="ru-link" href="">RU</a>
-                        </li>
-                    </ul>
-                </div>
-                <div class="clear"></div>
-            </div>
-            <div class="clear"></div>
             <div class="search-block">
                 {{ partial "search.html" . }}
             </div>

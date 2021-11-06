@@ -329,9 +329,12 @@ body {
 }
 
 #nav-search-lang-block,
-.search-block,
 .lang-nav {
     float: right;
+}
+
+.brand-color {
+    color: #0c44a4;
 }
 
 .nav,
@@ -341,7 +344,13 @@ body {
 }
 
 .searchbox {
-    margin-top: -38px;
+
+}
+
+#about h1 {
+    margin: 0;
+    padding: 10px;
+    font-size: 26px;
 }
 
 a {
@@ -363,6 +372,18 @@ a {
 
 .search-result-wrap {
     right: 0;
+}
+
+.logo {
+    width: 50px;
+    height: 50px;
+    display: block;
+}
+
+.logo img{
+    width: 50px;
+    height: 50px;
+    display: block;
 }
 
 @media (max-width: 968px) {
