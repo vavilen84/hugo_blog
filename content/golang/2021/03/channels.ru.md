@@ -2,7 +2,7 @@
 title: "Каналы в Go"
 publishdate: "2021-03-05"
 lastmod: "2021-03-05"
-summary: "go"
+summary: "golang"
 categories:
   - "golang"
 tags:

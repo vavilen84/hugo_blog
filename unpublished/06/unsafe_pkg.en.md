@@ -2,7 +2,7 @@
 title: "Golang: unsafe package"
 publishdate: "2021-06-06"
 lastmod: "2021-06-06"
-summary: "go"
+summary: "golang"
 categories:
 - "golang"
 tags:

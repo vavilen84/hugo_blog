@@ -2,7 +2,7 @@
 title: "Google I/O 2012 - Go Concurrency Patterns"
 publishdate: "2021-01-28"
 lastmod: "2021-01-28"
-summary: "go"
+summary: "golang"
 categories:
     - "golang"
 tags:

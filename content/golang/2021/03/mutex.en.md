@@ -2,7 +2,7 @@
 title: "Mutex"
 publishdate: "2021-03-27"
 lastmod: "2021-03-27"
-summary: "go"
+summary: "golang"
 categories:
 - "golang"
 tags:

@@ -2,7 +2,7 @@
 title: "Variables declaration"
 publishdate: "2021-01-14"
 lastmod: "2021-01-14"
-summary: "go"
+summary: "golang"
 categories:
 - "golang"
 tags:

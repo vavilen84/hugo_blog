@@ -43,14 +43,20 @@ body {
     width: 1000px;
 }
 
-.nav-block {
-    padding: 0;
-}
-
 .nav,
 .lang-nav {
-    position: relative;
-    top: 10px;
+    height:100%;
+}
+
+.wrapper ul{
+    margin: 0;
+}
+
+a.lang-link,
+.nav a{
+    display: inline-block;
+    height:100%;
+    line-height: 36px;
 }
 
 .lang-nav {
@@ -418,8 +424,8 @@ h4 {
 .lang-link.active:hover,
 .nav a.active,
 .nav a.active:hover{
-    color: #0d47a1;
-    text-decoration: underline;
+    background-color: #0d47a1;
+    color: white;
 }
 .nav a,
 a.lang-link {
@@ -431,8 +437,14 @@ a.lang-link:hover {
     color: red;
 }
 
+.nav-wrapper {
+    height:38px;
+}
 
-
+.nav-block {
+    height: 100%;
+    padding: 0;
+}
 @media (max-width: 968px) {
     .search-result-wrap {
         left: 0;

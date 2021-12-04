@@ -2,7 +2,7 @@
 title: "Массивы, срезы и строки. Механизм append"
 publishdate: "2021-01-01"
 lastmod: "2021-07-11"
-summary: "go"
+summary: "golang"
 categories:
   - "golang"
 tags:

@@ -2,7 +2,7 @@
 title: "Go runtime"
 publishdate: "2021-08-06"
 lastmod: "2021-08-06"
-summary: "go"
+summary: "golang"
 categories:
 - "golang"
 tags:

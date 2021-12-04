@@ -2,7 +2,7 @@
 title: "Defer, Panic и Recover"
 publishdate: "2021-03-26"
 lastmod: "2021-07-11"
-summary: "go"
+summary: "golang"
 categories:
 - "golang"
 tags:

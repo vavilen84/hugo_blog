@@ -2,7 +2,7 @@
 title: "database/sql package"
 publishdate: "2021-07-14"
 lastmod: "2021-07-14"
-summary: "go"
+summary: "golang"
 categories:
 - "golang"
 tags:

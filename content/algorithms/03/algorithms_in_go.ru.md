@@ -2,7 +2,7 @@
 title: "Алгоритмы в Golang"
 publishdate: "2021-03-05"
 lastmod: "2021-03-05"
-summary: "go"
+summary: "algorithms"
 description: "Эта статья основана на книге Aditya Bhargava 'Grokking Algorithms'. Cтатья может быть полезна при подготовке к собеседованию."
 image: "posts/dynamical_programming_subsequent.png"
 categories:

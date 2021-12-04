@@ -2,7 +2,7 @@
 title: "Вычисление Big O для начинающих"
 publishdate: "2021-04-21"
 lastmod: "2021-04-21"
-summary: "go"
+summary: "algorithms"
 categories:
 - "algorithms"
 tags:

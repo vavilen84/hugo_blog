@@ -2,7 +2,7 @@
 title: "Интерфейсы и рефлексия в Golang"
 publishdate: "2021-03-26"
 lastmod: "2021-03-26"
-summary: "go"
+summary: "golang"
 categories:
 - "golang"
 tags:
