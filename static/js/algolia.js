@@ -62,7 +62,7 @@ function initAlgoliaClient() {
             },
         }),
         instantsearch.widgets.pagination({
-            container: '#pagination',
+            container: '#pagination.html',
         }),
     ]);
 

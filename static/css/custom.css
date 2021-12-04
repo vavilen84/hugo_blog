@@ -35,7 +35,7 @@ body {
 }
 
 .content {
-    padding-bottom: 200px;
+    padding-bottom: 90px;
 }
 
 .holder {
@@ -72,8 +72,8 @@ h2 {
     margin: 40px 0 !important;
 }
 
-a {
-    color: #3498DB;
+.holder a {
+    color: #0d47a1;
 }
 
 #downBtn {
@@ -216,7 +216,6 @@ body {
 .posted-on {
     margin: 20px 0;
     color: gray;
-    text-decoration: underline;
 }
 
 .taxonomy-list .posted-on {
@@ -297,7 +296,7 @@ body {
 }
 
 #recent-articles-list li a:hover {
-    text-decoration: underline;
+
 }
 
 #recent-articles-list li .posted-on {
@@ -378,6 +377,42 @@ a {
     line-height: 30px;
     margin:0;
     padding:0;
+}
+
+.post-list {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top:50px;
+}
+
+.post-list .item {
+    width:49%;
+    margin: 5px;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.15);
+    transition: box-shadow 0.3s ease-in-out;
+    border: 1px solid #cecece;
+    padding: 20px;
+    border-radius: 5px;
+}
+
+.post-list a:hover{
+    text-decoration: none;
+}
+
+.post-list .item:hover{
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+.pagination li{
+    list-style: none;
+}
+
+.pagination .page-item.active .page-link{
+    background-color: #0d47a1;
+    border-color: #0d47a1;
+}
+h4 {
+    color:black;
 }
 
 @media (max-width: 968px) {

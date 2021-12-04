@@ -1,0 +1,11 @@
+<div class="post-list">
+    {{ range .Paginator.Pages }}
+    <a class="item" href="{{ .Permalink }}">
+        <h4>{{ .Title }}</h4>
+        <small class="posted-on">category: <span class="text-uppercase">{{ .Summary }}</span></small>
+        <br>
+        <small class="posted-on">updated: {{ .Lastmod.Format "January 2, 2006" }}</small>
+    </a>
+    {{ end }}
+</div>
+{{ template "_internal/pagination.html" . }}
