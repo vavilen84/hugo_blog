@@ -299,6 +299,10 @@ body {
 
 }
 
+.wrapper a:hover {
+    text-decoration: none;
+}
+
 #recent-articles-list li .posted-on {
     font-size: 15px;
     text-decoration: none;
@@ -395,10 +399,6 @@ a {
     border-radius: 5px;
 }
 
-.post-list a:hover{
-    text-decoration: none;
-}
-
 .post-list .item:hover{
     box-shadow: 0 5px 15px rgba(0,0,0,0.3);
 }
@@ -414,6 +414,24 @@ a {
 h4 {
     color:black;
 }
+.lang-link.active,
+.lang-link.active:hover,
+.nav a.active,
+.nav a.active:hover{
+    color: #0d47a1;
+    text-decoration: underline;
+}
+.nav a,
+a.lang-link {
+    transition: color 0.3s ease-in-out;
+}
+
+.nav a:hover,
+a.lang-link:hover {
+    color: red;
+}
+
+
 
 @media (max-width: 968px) {
     .search-result-wrap {

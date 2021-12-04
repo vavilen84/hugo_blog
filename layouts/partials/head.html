@@ -23,6 +23,7 @@
     <script src="/js/lang-switcher.js{{ if $assetBusting }}?timestamp={{ now.Unix }}{{ end }}"></script>
     <script src="/js/link-localize.js{{ if $assetBusting }}?timestamp={{ now.Unix }}{{ end }}"></script>
     <script src="/js/on-window-scroll.js{{ if $assetBusting }}?timestamp={{ now.Unix }}{{ end }}"></script>
+    <script src="/js/common.js{{ if $assetBusting }}?timestamp={{ now.Unix }}{{ end }}"></script>
 
     <meta property="og:url"                content="{{ .Permalink }}" />
     <meta property="og:type"               content="article" />
@@ -44,6 +45,7 @@
     <script>
         var currentLang = "{{.Site.Language.Lang}}";
         var indexName = "{{.Site.Params.IndexName}}"
+        var currentCategory;
     </script>
 </head>
 <body>
