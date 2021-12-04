@@ -28,3 +28,4 @@ home = ["HTML", "JSON"]
 
 [Params]
 IndexName = "blog_local_"
+env="local"
