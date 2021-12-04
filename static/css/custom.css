@@ -31,7 +31,7 @@ body {
     min-height: 100%;
     margin: 0 auto;
     background: #F5F7FA;
-    font: 16px/20px Arial, sans-serif;
+    font: 18px/20px Arial, sans-serif;
 }
 
 .content {
@@ -44,7 +44,7 @@ body {
 }
 
 .nav-block {
-    padding: 35px 0 3px;
+    padding: 0;
 }
 
 .nav,
@@ -328,20 +328,12 @@ body {
     display: none;
 }
 
-#nav-search-lang-block,
-.search-block,
-.lang-nav {
-    float: right;
-}
-
-.nav,
-.lang-block,
-#searchbox {
-    float: left;
-}
-
 .searchbox {
-    margin-top: -38px;
+
+}
+
+#nav-search-lang-block{
+    float:right;
 }
 
 a {
@@ -361,8 +353,31 @@ a {
     max-width: 100% !important;
 }
 
-.search-result-wrap {
-    right: 0;
+.brand-color {
+    color: #0d47a1;
+}
+
+.logo-block{
+    padding:50px 0;
+}
+
+.logo{
+    width:100px;
+}
+
+.site-description{
+    margin: 20px;
+}
+
+.site-description .description{
+    margin-top: 20px;
+}
+
+.site-description h1{
+    text-align: center;
+    line-height: 30px;
+    margin:0;
+    padding:0;
 }
 
 @media (max-width: 968px) {

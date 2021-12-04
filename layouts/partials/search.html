@@ -1,19 +1,18 @@
 {{ $assetBusting := not .Site.Params.disableAssetsBusting }}
-<div class="searchbox">
-    <div class="algolia-logo-wrap">
-        <img class="algolia-logo" src="/images/algolia.png" alt=""/>
+<div class="search-block">
+    <div class="searchbox">
+        <div id="searchbox" class="ais-SearchBox"></div>
+        <div class="clear"></div>
+        <div class="search-result-wrap">
+            <div id="hits"></div>
+            <div id="pagination"></div>
+        </div>
     </div>
-    <div id="searchbox" class="ais-SearchBox"></div>
-    <div class="clear"></div>
-    <div class="search-result-wrap">
-        <div id="hits"></div>
-        <div id="pagination"></div>
-    </div>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.css@7/themes/algolia-min.css">
+    <link href="/css/algolia.css{{ if $assetBusting }}?timestamp={{ now.Unix }}{{ end }}" rel="stylesheet">
+
+    <script src="https://cdn.jsdelivr.net/algoliasearch/3.32.0/algoliasearchLite.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/instantsearch.js@4.8.4"></script>
+    <script src="/js/algolia.js{{ if $assetBusting }}?timestamp={{ now.Unix }}{{ end }}"></script>
 </div>
-
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.css@7/themes/algolia-min.css">
-<link href="/css/algolia.css{{ if $assetBusting }}?timestamp={{ now.Unix }}{{ end }}" rel="stylesheet">
-
-<script src="https://cdn.jsdelivr.net/algoliasearch/3.32.0/algoliasearchLite.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/instantsearch.js@4.8.4"></script>
-<script src="/js/algolia.js{{ if $assetBusting }}?timestamp={{ now.Unix }}{{ end }}"></script>

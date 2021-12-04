@@ -8,7 +8,7 @@
     <meta name="author" content="A Hugo User">
     <title>{{ .Title }}</title>
     <link rel="canonical" href="{{ .Permalink }}">
-    <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="/images/logo/favicon.ico" type="image/x-icon">
     <link href="/css/custom.css?timestamp={{ now.Unix }}" rel="stylesheet">
     <link href="/css/font-awesome.css" rel="stylesheet">
     <link
@@ -48,41 +48,36 @@
 </head>
 <body>
 <div class="wrapper">
-
-    <a class="btn btn-info" onclick="topFunction()" id="topBtn">
-        <div class="arrow-up"></div>
-    </a>
-    <a class="btn btn-info" onclick="downFunction()" id="downBtn">
-        <div class="arrow-down"></div>
-    </a>
+    {{ partial "up_down_buttons.html" . }}
     <div class="content">
-        <div class="holder nav-block">
-            <ul class="nav">
-                <li>
-                    <a class="localized underline" href="{{ .Site.BaseURL }}">Home</a>
-                    <a class=" localized underline" href="{{ .Site.BaseURL }}categories/golang/">Golang</a>
-                    <a class="localized underline" href="{{ .Site.BaseURL }}categories/php/">PHP</a>
-                    <a class="localized underline" href="{{ .Site.BaseURL }}categories/algorithms/">Algorithms & data structures</a>
-                </li>
-            </ul>
-            <div id="nav-search-lang-block">
-                <div class="lang-block">
-                    <ul class="lang-nav fl-right">
-                        <li>
-                            <a class="lang-link" id="en-link" href="">EN</a>
-                        </li>
-                        <li>
-                            <a class="lang-link" id="ru-link" href="">RU</a>
-                        </li>
-                    </ul>
+        <div>
+            <div class="holder">
+                <div class="logo-block">
+                    <div class="fl-left">
+                        {{ partial "logo.html" . }}
+                    </div>
+                    <div class="fl-left">
+                        {{ partial "site_description.html" . }}
+                    </div>
+                    <div class="clear"></div>
+                </div>
+            </div>
+            <div class="border"></div>
+            <div class="holder">
+                <div class="fl-left">
+                    {{ partial "nav.html" . }}
+                </div>
+                <div class="fl-right">
+                    <div class="fl-left">
+                        {{ partial "search.html" . }}
+                    </div>
+                    <div class="fl-left">
+                        {{ partial "lang.html" . }}
+                    </div>
+                    <div class="clear"></div>
                 </div>
                 <div class="clear"></div>
             </div>
-            <div class="clear"></div>
-            <div class="search-block">
-                {{ partial "search.html" . }}
-            </div>
-            <div class="clear"></div>
         </div>
         <div class="border"></div>
         <div class="holder">

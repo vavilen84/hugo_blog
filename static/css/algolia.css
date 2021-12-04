@@ -51,8 +51,7 @@
 }
 
 #searchbox {
-    margin-bottom: 2rem;
-    margin-top:15px;
+    margin :0;
 }
 
 #pagination {
@@ -134,7 +133,10 @@
     background: white;
     z-index: 10;
     width:510px;
-    top:131px;
+}
+
+.search-result-wrap {
+
 }
 
 .ais-Hits-item{
