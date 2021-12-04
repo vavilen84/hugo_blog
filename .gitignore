@@ -19,3 +19,7 @@ test/*
 !test/.gitignore
 tmp/*
 !tmp/.gitignore
+
+.node_modules
+
+static/js/bundle.js
