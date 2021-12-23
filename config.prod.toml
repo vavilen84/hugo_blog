@@ -2,6 +2,7 @@ baseURL = "https://vavilen84.com/"
 canonifyURLs = true
 
 defaultContentLanguage = "en"
+paginate=6
 
 [languages]
 [languages.en]

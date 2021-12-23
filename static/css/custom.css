@@ -82,6 +82,10 @@ h2 {
     color: #0d47a1;
 }
 
+h4 {
+    word-break: normal;
+}
+
 #downBtn {
     display: none; /* Hidden by default */
     position: fixed; /* Fixed/sticky position */
