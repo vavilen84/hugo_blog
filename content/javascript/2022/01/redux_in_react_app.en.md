@@ -21,13 +21,13 @@ Sources:
 
 Redux is a predictable state container for JavaScript apps.
 
-## Main parts
+# Main parts
 
 1. Store - the whole global state of your app is stored in an object tree inside a single store.
 2. Reducer - a function that takes prev state and returns new by taking an "action" object.
 3. Action - an object describing what happened.
 
-### Create store
+# Create store
 
 Example [source link](https://github.com/vavilen84/react_node_blog/blob/master/frontend/src/index.js)
 ```
@@ -61,12 +61,12 @@ ReactDOM.render(
 ```
 
 In an example above we used:
-1. [combineReducers](https://redux.js.org/api/combinereducers) in order to have possibility to extend our app in the future.
-2. 2nd "enhancer" param [composeWithDevTools()](https://github.com/zalmoxisus/redux-devtools-extension) - [here](https://www.youtube.com/watch?v=IlM7497j6LY) you can find a great demo.
-3. [thunk](https://github.com/reduxjs/redux-thunk) middleware for Redux - it allows to return a function with "dispatch" param in our "actions" instead of a simple object.
+1. [combineReducers](https://redux.js.org/api/combinereducers) in order to have the possibility to extend our app in the future.
+2. 2nd "enhancer" param [composeWithDevTools()](https://github.com/zalmoxisus/redux-devtools-extension) which adds devTools to our middlewares - [here](https://www.youtube.com/watch?v=IlM7497j6LY) you can find a great demo.
+3. [thunk](https://github.com/reduxjs/redux-thunk) middleware for Redux - it allows us to return a function with a "dispatch" param in our "actions" instead of a simple object.
 4. [logger](https://www.npmjs.com/package/redux-logger) - Logger for Redux.
 
-### Reducer
+# Reducer
 
 A reducer's function signature is: (state, action) => newState
 
@@ -170,15 +170,15 @@ export function switchMode(state, action) {
 }
 ```
 
-### Action
+# Action
 
 Official docs suggests 2 types of actions:
 - "simple" action represented as a plain Javascript object [link](https://redux.js.org/tutorials/fundamentals/part-3-state-actions-reducers#designing-actions)
 - "thunk" action, which may: contain logic, call dispatch and getState methods [link](https://redux.js.org/tutorials/essentials/part-5-async-logic#thunks-and-async-logic) 
 
-#### "simple" action
+# "simple" action
 
-"simple" action should have simple object with data for updating store. It should have 'type' property. Example [link](https://github.com/vavilen84/react_node_blog/blob/master/frontend/src/actions/index.js):
+"simple" action should have a simple object with data for updating the store. It should have 'type' property. Example [link](https://github.com/vavilen84/react_node_blog/blob/master/frontend/src/actions/index.js):
 ```
 import {CHANGE_ROUTE, SHOW_ALERT, LOGIN, LOGOUT, SWITCH_MODE} from "../actionTypes";
 
@@ -307,7 +307,7 @@ const mapDispatchToProps = dispatch => (
 ...
 export default connect(mapStateToProps, mapDispatchToProps)(PostsCreate);
 ```
-this gave ability to call showAlert as a property from the component
+this gives the ability to define showAlert action as a component property and call it
 ```
 class PostsCreate extends React.Component {
     constructor(props) {
@@ -328,5 +328,109 @@ class PostsCreate extends React.Component {
     ...
 ```
 
+# Thunk action
 
+Example of "thunk" action call [link](https://github.com/vavilen84/react_node_blog/blob/master/frontend/src/components/pages/frontend/login/LoginForm.js)
+```
+import React from "react";
+import { connect } from 'react-redux'
+import {authenticateUserThunkAction} from "../../../../actions/thunk/authenticateUser";
 
+class LoginForm extends React.Component {
+
+    constructor(props) {
+
+        super(props);
+
+        this.state = {
+            username: '',
+            password: ''
+        };
+
+        this.handleChangeUsername = this.handleChangeUsername.bind(this);
+        this.handleChangePassword = this.handleChangePassword.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
+    }
+
+    handleChangeUsername(event) {
+        this.setState({username: event.target.value});
+    }
+
+    handleChangePassword(event) {
+        this.setState({password: event.target.value});
+    }
+
+    handleSubmit(event) {
+        event.preventDefault();
+        this.props.authenticateUser(this.state.username, this.state.password);
+    }
+
+    render() {
+        return (
+            <div>
+                <form onSubmit={this.handleSubmit}>
+                    <div className="form-group">
+                        <label htmlFor="">Username</label>
+                        <input type="text" className="form-control" placeholder="Enter username" onChange={this.handleChangeUsername}/>
+                    </div>
+                    <div className="form-group">
+                        <label htmlFor="">Password</label>
+                        <input type="password" className="form-control" placeholder="Password" onChange={this.handleChangePassword}/>
+                    </div>
+                    <input type="submit" value="Submit" className="btn btn-success"/>
+                </form>
+            </div>
+        );
+    }
+}
+
+const mapDispatchToProps = dispatch => (
+    {
+        authenticateUser: (username, password) => dispatch(authenticateUserThunkAction(username, password))
+    }
+)
+
+export default connect(null, mapDispatchToProps)(LoginForm);
+```
+as we can see, we also used connect & mapDispatchToProps methods here. Thunk action:
+```
+import {getURL, USERS_BASE_URL} from "../../helpers";
+import {loginAction, showAlertAction} from "../index";
+import {accessToken, defaultErr, refreshToken, tokensEmptyErr} from "../../constants/constants";
+
+export function authenticateUserThunkAction(username, password) {
+    return (dispatch) => {
+        fetch(getURL(USERS_BASE_URL + "/" + username + "/authenticate"), {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                username: username,
+                password: password
+            })
+        })
+            .then(res => res.json())
+            .then(json => {
+                if (json.code === 200) {
+                    const accessTokenData = json.data.accessToken;
+                    const refreshTokenData = json.data.refreshToken;
+                    if (!accessTokenData || !refreshTokenData) {
+                        return Promise.reject(tokensEmptyErr);
+                    }
+                    localStorage.setItem(accessToken, accessTokenData.token);
+                    localStorage.setItem(refreshToken, refreshTokenData.token);
+                    dispatch(loginAction(accessTokenData.token, refreshTokenData.token));
+                }
+                dispatch(showAlertAction(json.code, json.data, json.message));
+            })
+            .catch(err => {
+                console.log(err);
+                dispatch(showAlertAction(500, null, defaultErr));
+            });
+    };
+}
+```
+as we can see - we are able to call "simple" actions from "thunk" actions.
+
+The end of the article!
