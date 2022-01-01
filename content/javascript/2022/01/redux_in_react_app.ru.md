@@ -4,7 +4,7 @@ publishdate: "2022-01-01"
 summary: "javascript"
 categories:
 - "javascript"
-  tags:
+tags:
 - "mern"
 - "mongodb"
 - "react"
