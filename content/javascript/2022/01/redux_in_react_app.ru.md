@@ -1,6 +1,7 @@
 ---
 title: "Пишем блог на MERN (часть №1): Redux в React приложении"
 publishdate: "2022-01-01"
+lastmod: "2022-01-13"
 summary: "javascript"
 categories:
 - "javascript"
@@ -14,7 +15,7 @@ tags:
 
 Источники:
 - [Официальная документация](https://redux.js.org/introduction/getting-started)
-- [Пример приложения от автора](https://github.com/vavilen84/react_node_blog)
+- [Пример приложения от автора](https://github.com/vavilen84/mern_skills_up_project)
 - [redux-devtools-extension](https://github.com/zalmoxisus/redux-devtools-extension)
 
 # Redux
@@ -29,7 +30,7 @@ Redux - это предсказуемый контейнер состояния 
 
 # Создание store
 
-Пример [ссылка](https://github.com/vavilen84/react_node_blog/blob/master/frontend/src/index.js)
+Пример [ссылка](https://github.com/vavilen84/mern_skills_up_project/blob/master/frontend/src/index.js)
 ```
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -75,24 +76,22 @@ ReactDOM.render(
 - Нельзя изменять state аргумент. Вместо этого, надо создавать новый объект, копировать в него state аргумент и изменять уже его.
 - Не должны содержать асинхронной логики или сайд-эффектов.
 
-Пример [ссылка](https://github.com/vavilen84/react_node_blog/blob/master/frontend/src/reducers/index.js)
+Пример [ссылка](https://github.com/vavilen84/mern_skills_up_project/blob/master/frontend/src/reducers/index.js)
 ```
-import {CHANGE_ROUTE, SHOW_ALERT, LOGIN, LOGOUT, SWITCH_MODE} from "../actionTypes";
-import {showAlert, clearAlert, defaultState, login, logout, switchMode} from "../mutations";
+import {SHOW_ALERT, LOGIN, LOGOUT, HIDE_ALERT} from "../actionTypes";
+import {showAlert, defaultState, login, logout, hideAlert} from "../mutations";
 
 export function rootReducer(state = defaultState, action) {
     let st = Object.assign({},state);
     switch (action.type) {
         case SHOW_ALERT:
             return showAlert(st, action);
-        case CHANGE_ROUTE:
-            return clearAlert(st);
+        case HIDE_ALERT:
+            return hideAlert(st);
         case LOGIN:
             return login(st, action);
         case LOGOUT:
             return logout(st);
-        case SWITCH_MODE:
-            return switchMode(st, action);
         default:
             return state
     }
@@ -106,14 +105,11 @@ export function rootReducer(state = defaultState, action) {
 - "state" параметр имеет начальное "defaultState" значение
 - мы не передаем "state" параметр в mutation, но создаем новый объект вместо этого
 
-Mutations [ссылка](https://github.com/vavilen84/react_node_blog/blob/master/frontend/src/mutations/index.js)
+Mutations [ссылка](https://github.com/vavilen84/mern_skills_up_project/blob/master/frontend/src/mutations/index.js)
 ```
-import {frontendMode} from "../constants/constants";
-
 export const defaultState = {
     type: null,
     showAlert: false,
-    mode: frontendMode,
     alert: {
         code: null,
         data: [],
@@ -136,38 +132,17 @@ export function showAlert(state, action) {
     return state;
 }
 
-export function clearAlert(state) {
+export function hideAlert(state) {
     state.showAlert = false;
-    state.alert.code = null;
     state.alert.visible = false;
+    state.alert.code = null;
     state.alert.data = [];
     state.alert.message = null;
 
     return state;
 }
 
-export function login(state, action) {
-    state.auth = {
-        accessToken: action.accessToken,
-        refreshToken: action.refreshToken
-    };
-
-    return state;
-}
-
-export function logout(state) {
-    state.auth = {
-        accessToken: null,
-        refreshToken: null
-    };
-
-    return state;
-}
-
-export function switchMode(state, action) {
-    state.mode = action.mode;
-    return state;
-}
+...
 ```
 
 # Action
@@ -178,9 +153,10 @@ export function switchMode(state, action) {
 
 # "простой" action
 
-"простой" action - обычный объект с данными для изменения store. Должен иметь свойство 'type'. Пример [ссылка](https://github.com/vavilen84/react_node_blog/blob/master/frontend/src/actions/index.js):
+"простой" action - обычный объект с данными для изменения store. Должен иметь свойство 'type'. 
+Пример [ссылка](https://github.com/vavilen84/mern_skills_up_project/blob/master/frontend/src/actions/index.js):
 ```
-import {CHANGE_ROUTE, SHOW_ALERT, LOGIN, LOGOUT, SWITCH_MODE} from "../actionTypes";
+import {SHOW_ALERT, LOGIN, LOGOUT, HIDE_ALERT} from "../actionTypes";
 
 export function showAlertAction(code, data, message) {
     return {
@@ -191,129 +167,24 @@ export function showAlertAction(code, data, message) {
     };
 }
 
-export function loginAction(accessToken, refreshToken) {
+export function hideAlertAction() {
     return {
-        type: LOGIN,
-        accessToken: accessToken,
-        refreshToken: refreshToken
+        type: HIDE_ALERT,
     };
 }
 
-export function logoutAction() {
-    return {
-        type: LOGOUT,
-    };
-}
-
-export function changeRouteAction() {
-    return {
-        type: CHANGE_ROUTE
-    };
-}
-
-export function switchModeAction(mode) {
-    return {
-        type: SWITCH_MODE,
-        mode: mode
-    };
-}
+...
 ```
 
-пример вызова "простого" action из компонента [ссылка](https://github.com/vavilen84/react_node_blog/blob/master/frontend/src/components/pages/admin/posts/create/PostsCreate.js):
+пример вызова "простого" action из компонента 
+[ссылка](https://github.com/vavilen84/mern_skills_up_project/blob/master/frontend/src/components/posts/PostSaveForm.js):
 ```
-import React from "react";
+...
 import {connect} from 'react-redux'
-import {Navigate} from "react-router";
-import {adminPostsIndexRoute, defaultErr} from "../../../../../constants/constants";
-import PostsCreateForm from "./PostsCreateForm";
-import {getURL, POSTS_BASE_URL} from "../../../../../helpers";
 import {showAlertAction} from "../../../../../actions";
 
 class PostsCreate extends React.Component {
-
-    constructor(props) {
-
-        super(props);
-
-        this.state = {
-            created: false
-        };
-
-        this.handleSubmit = this.handleSubmit.bind(this);
-    }
-
-    async handleSubmit(post) {
-
-        let formData = new FormData();
-        formData.append('url', post.url);
-        formData.append('image', post.image);
-        formData.append('content', post.content);
-
-        await fetch(getURL(POSTS_BASE_URL), {
-            method: 'POST',
-            headers: {
-                'Authorization': 'Bearer ' + this.props.accessToken
-            },
-            body: formData
-        })
-            .then(res => res.json())
-            .then(json => {
-                if (json.code === 200) {
-                    this.setState({created: true});
-                }
-                this.props.showAlert(json.code, json.data, json.message);
-            })
-            .catch(err => {
-                console.log(err);
-                this.props.showAlert(500, null, defaultErr);
-            });
-    }
-
-    render() {
-
-        const content = this.state.created
-            ? <Navigate to={adminPostsIndexRoute} replace={true}/>
-            : <PostsCreateForm handleSubmit={this.handleSubmit}/>
-
-        return (content);
-    }
-}
-
-const mapDispatchToProps = dispatch => (
-    {
-        showAlert: (code, data, message) => dispatch(showAlertAction(code, data, message))
-    }
-)
-
-
-const mapStateToProps = (state) => {
-    let auth = state.rootReducer.auth;
-
-    return {
-        accessToken: auth.accessToken,
-    };
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(PostsCreate);
-```
-Как мы можем видеть, мы использовали метод "connect" из пакета 'react-redux' чтобы объявить mapDispatchToProps:
-```
-const mapDispatchToProps = dispatch => (
-    {
-        showAlert: (code, data, message) => dispatch(showAlertAction(code, data, message))
-    }
-)
-...
-export default connect(mapStateToProps, mapDispatchToProps)(PostsCreate);
-```
-это дает возможность определить showAlert action как свойство компонента и вызвать его
-```
-class PostsCreate extends React.Component {
-    constructor(props) {
-        super(props);
-        ...
-        this.handleSubmit = this.handleSubmit.bind(this);
-    }
+    ...
     async handleSubmit(post) {
         ...
         await fetch(getURL(POSTS_BASE_URL), {
@@ -324,41 +195,48 @@ class PostsCreate extends React.Component {
                 ...
                 this.props.showAlert(json.code, json.data, json.message);
             })
+            .catch(err => {
+                ...
+                this.props.showAlert(500, null, defaultErr);
+            });
+    }
+
+    render() {
+       ...
+    }
+}
+
+const mapDispatchToProps = dispatch => (
+    {
+        showAlert: (code, data, message) => dispatch(showAlertAction(code, data, message))
+    }
+)
+
+const mapStateToProps = (state) => {
     ...
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(PostsCreate);
 ```
+Как мы можем видеть, мы использовали метод "connect" из пакета 'react-redux' чтобы объявить mapDispatchToProps.
+Это дает возможность определить showAlert action как свойство компонента и вызвать его.
 
 # Thunk action
 
-Пример вызова "thunk" action [ссылка](https://github.com/vavilen84/react_node_blog/blob/master/frontend/src/components/pages/frontend/login/LoginForm.js)
+Пример вызова "thunk" action 
+[ссылка](https://github.com/vavilen84/mern_skills_up_project/blob/master/frontend/src/components/pages/login/LoginForm.js)
 ```
-import React from "react";
+...
 import { connect } from 'react-redux'
 import {authenticateUserThunkAction} from "../../../../actions/thunk/authenticateUser";
 
 class LoginForm extends React.Component {
 
     constructor(props) {
-
-        super(props);
-
-        this.state = {
-            username: '',
-            password: ''
-        };
-
-        this.handleChangeUsername = this.handleChangeUsername.bind(this);
-        this.handleChangePassword = this.handleChangePassword.bind(this);
+        ...
         this.handleSubmit = this.handleSubmit.bind(this);
     }
-
-    handleChangeUsername(event) {
-        this.setState({username: event.target.value});
-    }
-
-    handleChangePassword(event) {
-        this.setState({password: event.target.value});
-    }
-
+    ...
     handleSubmit(event) {
         event.preventDefault();
         this.props.authenticateUser(this.state.username, this.state.password);
@@ -368,15 +246,7 @@ class LoginForm extends React.Component {
         return (
             <div>
                 <form onSubmit={this.handleSubmit}>
-                    <div className="form-group">
-                        <label htmlFor="">Username</label>
-                        <input type="text" className="form-control" placeholder="Enter username" onChange={this.handleChangeUsername}/>
-                    </div>
-                    <div className="form-group">
-                        <label htmlFor="">Password</label>
-                        <input type="password" className="form-control" placeholder="Password" onChange={this.handleChangePassword}/>
-                    </div>
-                    <input type="submit" value="Submit" className="btn btn-success"/>
+                    ...
                 </form>
             </div>
         );
@@ -391,46 +261,33 @@ const mapDispatchToProps = dispatch => (
 
 export default connect(null, mapDispatchToProps)(LoginForm);
 ```
-как мы можем видеть, мы тоже использовали методы connect & mapDispatchToProps. Thunk action:
+как мы можем видеть, мы тоже использовали методы connect & mapDispatchToProps.
+Мы можем вызвать "простой" action из 
+["thunk" action](https://github.com/vavilen84/mern_skills_up_project/blob/master/frontend/src/actions/thunk/authenticateUser.js):
 ```
-import {getURL, USERS_BASE_URL} from "../../helpers";
+...
 import {loginAction, showAlertAction} from "../index";
-import {accessToken, defaultErr, refreshToken, tokensEmptyErr} from "../../constants/constants";
 
 export function authenticateUserThunkAction(username, password) {
     return (dispatch) => {
         fetch(getURL(USERS_BASE_URL + "/" + username + "/authenticate"), {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                username: username,
-                password: password
-            })
+            ...
         })
             .then(res => res.json())
             .then(json => {
                 if (json.code === 200) {
-                    const accessTokenData = json.data.accessToken;
-                    const refreshTokenData = json.data.refreshToken;
-                    if (!accessTokenData || !refreshTokenData) {
-                        return Promise.reject(tokensEmptyErr);
-                    }
-                    localStorage.setItem(accessToken, accessTokenData.token);
-                    localStorage.setItem(refreshToken, refreshTokenData.token);
+                    ...
                     dispatch(loginAction(accessTokenData.token, refreshTokenData.token));
                 }
                 dispatch(showAlertAction(json.code, json.data, json.message));
             })
             .catch(err => {
-                console.log(err);
+                ...
                 dispatch(showAlertAction(500, null, defaultErr));
             });
     };
 }
 ```
-как мы можем видеть - мы можем вызвать "простой" action из "thunk" action.
 
 Конец статьи!
 
