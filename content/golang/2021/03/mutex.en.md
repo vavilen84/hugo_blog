@@ -24,11 +24,11 @@ only one go subroutine can access a variable.
 
 ```
 var (
-    sema = make(chan s truct{},1) // guarding balance
+    sema = make(chan struct{}, 1) // guarding balance
     balance int
 )
 
-func Deposit(amount in t) {
+func Deposit(amount int) {
     sema <- struct{}{}
     balance = balance + amount
     <- sema
@@ -42,7 +42,7 @@ func Balance() int {
 }
 ```
 
-This pattern of mu tual exclu sion is so useful that it is sup por ted direc tly by the Mutex type
+This pattern of mutual exclusion is so useful that it is supported directly by the Mutex type
 from the sync package. Its Lock method acquires the token (called a lock) and its Unlock
 method releases it:
 ```
@@ -103,7 +103,7 @@ func set(key string, value string) {
 
 RLock - is called 'shared lock'. Lock - is called 'exclusive lock'.
 
-An RWMutex re quires more complex internal bookkeeping , making it slower than a regular
+An RWMutex requires more complex internal bookkeeping , making it slower than a regular
 mutex for uncontended locks.
 
 The end of the article.

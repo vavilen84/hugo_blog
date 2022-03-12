@@ -24,11 +24,11 @@ Ralph Caraveo III 'Танцы с мьютексами в Go' https://habr.com/ru
 
 ```
 var (
-    sema = make(chan s truct{},1) // защита balance
+    sema = make(chan struct{}, 1) // защита balance
     balance int
 )
 
-func Deposit(amount in t) {
+func Deposit(amount int) {
     sema <- struct{}{}
     balance = balance + amount
     <- sema
